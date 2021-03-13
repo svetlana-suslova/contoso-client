@@ -1,7 +1,7 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {isEmpty, get} from 'lodash';
+import {isEmpty} from 'lodash';
 
 import AppPage from 'components/common/AppPage';
 

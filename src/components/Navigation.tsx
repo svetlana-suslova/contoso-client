@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import logo from '../assets/contoso.jpg';
 
 const Logo = styled.img`
-  width: 40px;
+  width: 20px;
   height: auto;
 `;
 
@@ -27,6 +27,9 @@ function Navigation() {
             <Nav className="mr-auto">
               <Nav.Link as={Link} href="/" to="/" active={pathName === '/'}>
                 Home
+              </Nav.Link>
+              <Nav.Link as={Link} href="/about" to="/about" active={pathName === '/about'}>
+                About
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>

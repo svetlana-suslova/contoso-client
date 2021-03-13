@@ -1,4 +1,5 @@
 import HomePage from './components/HomePage';
+import AboutPage from './components/AboutPage';
 
 export const routes = [
   {
@@ -8,6 +9,14 @@ export const routes = [
     pageProps: {
       pageId: 'home',
       title: 'Home',
+    },
+  },
+  {
+    path: '/about',
+    component: AboutPage,
+    pageProps: {
+      pageId: 'about',
+      title: 'About',
     },
   },
 ];
