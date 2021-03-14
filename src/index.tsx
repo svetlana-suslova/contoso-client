@@ -4,6 +4,7 @@ import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
 import 'bootstrap/dist/css/bootstrap.css';
+import 'toastr/build/toastr.css';
 
 import {routes} from './routes';
 import App from './components/App';
