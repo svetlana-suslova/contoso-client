@@ -7,6 +7,7 @@ import {getRandomUid} from '../helpers/utils';
 import {displayDate} from '../helpers/dateFormatter';
 
 import {loadStudentsStatistics} from '../actions/studentActions';
+import {Container} from './bootstrap';
 
 function AboutPage() {
   const statistics: Array<StatisticsItem> = useSelector((state: AppState) => state.student.statisticsList);
@@ -18,8 +19,8 @@ function AboutPage() {
 
   function render() {
     return (
-      <div className="container">
-        <h2>Students Statistics</h2>
+      <Container>
+        <h2>Students statistics</h2>
         <div className="col-md-4">
           <table className="table">
             <thead>
@@ -38,7 +39,7 @@ function AboutPage() {
             </tbody>
           </table>
         </div>
-      </div>
+      </Container>
     );
   }
   return render();

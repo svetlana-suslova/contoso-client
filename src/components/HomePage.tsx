@@ -1,14 +1,27 @@
 import React from 'react';
+import {Container, Row} from './bootstrap';
+
+import styled from 'styled-components';
+
+const StyledLink = styled.a`
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  &:hover {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+  }
+`;
 
 function HomePage() {
   function render() {
     return (
-      <div className="container">
+      <Container>
         <div className="jumbotron">
           <h1>Contoso University</h1>
         </div>
-
-        <div className="row">
+        <Row>
           <div className="col-md-4">
             <h2>Welcome to Contoso Express</h2>
             <p>
@@ -16,7 +29,6 @@ function HomePage() {
               development.
             </p>
           </div>
-
           <div className="col-md-4">
             <h2>Original Contoso</h2>
             <p>That is remake of famous in .NET world Contoso Express project.</p>
@@ -25,23 +37,24 @@ function HomePage() {
               SPA techniques for client side.
             </p>
             <p>
-              <a className="btn btn-default" href="http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc/">
+              <StyledLink
+                className="btn btn-default"
+                href="http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc/">
                 See original tutorial here &raquo;
-              </a>
+              </StyledLink>
             </p>
           </div>
-
           <div className="col-md-4">
             <h2>Source</h2>
             <p>See the latest source code on GitHub.</p>
             <p>
-              <a className="btn btn-default" href="https://github.com/yegor-sytnyk/contoso-express">
+              <StyledLink className="btn btn-default" href="https://github.com/yegor-sytnyk/contoso-express">
                 Check out source code on github &raquo;
-              </a>
+              </StyledLink>
             </p>
           </div>
-        </div>
-      </div>
+        </Row>
+      </Container>
     );
   }
   return render();
