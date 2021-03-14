@@ -2,7 +2,9 @@ import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {AppState} from '../reducers/rootReducer';
 import {isEmpty} from 'lodash';
+
 import {getRandomUid} from '../helpers/utils';
+import {displayDate} from '../helpers/dateFormatter';
 
 import {loadStudentsStatistics} from '../actions/studentActions';
 
@@ -29,7 +31,7 @@ function AboutPage() {
             <tbody>
               {statistics.map((statisticsItem) => (
                 <tr key={getRandomUid()}>
-                  <td>{statisticsItem.enrollmentDate}</td>
+                  <td>{displayDate(statisticsItem.enrollmentDate)}</td>
                   <td>{statisticsItem.studentCount}</td>
                 </tr>
               ))}

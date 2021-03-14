@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {isEmpty} from 'lodash';
 
 import AppPage from 'components/common/AppPage';
+import {displayCurrentYear} from '../helpers/dateFormatter';
 
 import 'styles/App.scss';
 
@@ -12,8 +13,6 @@ App.propTypes = {
 };
 
 function App(props) {
-  const date = '2021';
-
   function renderRoute(route, index: number) {
     const {pageProps, component: Component} = route;
     const wrapInAppPage = !isEmpty(pageProps);
@@ -38,7 +37,7 @@ function App(props) {
         {props.children}
         <div className="container">
           <hr />
-          <p>&copy; {date} - Contoso University</p>
+          <p>&copy; {displayCurrentYear()} - Contoso University</p>
         </div>
       </div>
     );
