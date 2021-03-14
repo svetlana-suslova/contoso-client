@@ -2,12 +2,12 @@ import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {AppState} from '../reducers/rootReducer';
 import {isEmpty} from 'lodash';
+import {getRandomUid} from '../helpers/utils';
 
 import {loadStudentsStatistics} from '../actions/studentActions';
 
 function AboutPage() {
   const statistics: Array<StatisticsItem> = useSelector((state: AppState) => state.student.statisticsList);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -15,7 +15,6 @@ function AboutPage() {
   }, []);
 
   function render() {
-    let id = 1;
     return (
       <div className="container">
         <h2>Students Statistics</h2>
@@ -29,7 +28,7 @@ function AboutPage() {
             </thead>
             <tbody>
               {statistics.map((statisticsItem) => (
-                <tr key={id++}>
+                <tr key={getRandomUid()}>
                   <td>{statisticsItem.enrollmentDate}</td>
                   <td>{statisticsItem.studentCount}</td>
                 </tr>
