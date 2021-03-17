@@ -3,7 +3,7 @@ import {Nav, Navbar, Container} from './bootstrap';
 import {Link, useLocation} from 'react-router-dom';
 import styled from 'styled-components';
 
-import logo from '../assets/contoso.jpg';
+import logo from 'assets/contoso.jpg';
 
 const Logo = styled.img`
   width: 20px;

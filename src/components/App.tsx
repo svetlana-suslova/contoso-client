@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import {isEmpty, get} from 'lodash';
 
 import AppPage from 'components/common/AppPage';
-import {displayCurrentYear} from '../helpers/dateFormatter';
+import {displayCurrentYear} from 'helpers/dateFormatter';
 import ErrorBoundary from './ErrorBoundary';
-import {AppState} from '../reducers/rootReducer';
+import {AppState} from 'reducers/rootReducer';
 
 import 'styles/App.scss';
 import styled from 'styled-components';

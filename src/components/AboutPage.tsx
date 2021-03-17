@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {AppState} from '../reducers/rootReducer';
+import {AppState} from 'reducers/rootReducer';
 import {isEmpty} from 'lodash';
 
-import {getRandomUid} from '../helpers/utils';
-import {displayDate} from '../helpers/dateFormatter';
+import {getRandomUid} from 'helpers/utils';
+import {displayDate} from 'helpers/dateFormatter';
 
 import {loadStudentsStatistics} from '../actions/studentActions';
 import {Container} from './bootstrap';

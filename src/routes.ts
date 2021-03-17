@@ -1,5 +1,5 @@
-import HomePage from './components/HomePage';
-import AboutPage from './components/AboutPage';
+import HomePage from 'components/HomePage';
+import AboutPage from 'components/AboutPage';
 
 export const routes = [
   {

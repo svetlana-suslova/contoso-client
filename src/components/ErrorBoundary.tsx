@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 
-import {screenCenteredContainer} from '../styles/shared';
+import {screenCenteredContainer} from 'styles/shared';
 
 const StyledError = styled.div`
   ${screenCenteredContainer};

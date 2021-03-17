@@ -1,4 +1,4 @@
-import {LOAD_STUDENTS_STATISTICS} from '../action_types/actionTypes';
+import {LOAD_STUDENTS_STATISTICS} from 'action_types/actionTypes';
 import helper from './reducerHelper';
 import initialState from './initialState';
 

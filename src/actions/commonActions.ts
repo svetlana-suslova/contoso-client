@@ -1,4 +1,4 @@
-import {ASYNC_ACTION_START, ASYNC_ACTION_END} from '../action_types/actionTypes';
+import {ASYNC_ACTION_START, ASYNC_ACTION_END} from 'action_types/actionTypes';
 
 import helper from './actionHelper';
 
