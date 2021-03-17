@@ -31,6 +31,9 @@ function Navigation() {
               <Nav.Link as={Link} href="/about" to="/about" active={pathName === '/about'}>
                 About
               </Nav.Link>
+              <Nav.Link as={Link} href="/students" to="/students" active={pathName === '/students'}>
+                Students
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -40,5 +43,4 @@ function Navigation() {
 
   return render();
 }
-
 export default Navigation;
