@@ -20,5 +20,4 @@ function AppPage(props) {
   }
   return render();
 }
-
 export default AppPage;

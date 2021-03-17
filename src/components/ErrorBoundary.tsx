@@ -30,5 +30,4 @@ class ErrorBoundary extends Component<any, any> {
     return this.props.children;
   }
 }
-
 export default ErrorBoundary;

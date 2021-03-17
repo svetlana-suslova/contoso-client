@@ -59,5 +59,4 @@ function HomePage() {
   }
   return render();
 }
-
 export default HomePage;

@@ -1,9 +1,14 @@
 import {format, parseISO} from 'date-fns';
 
-export function displayDate(date, displayFormat = 'MM/dd/yyyy') {
+export default {
+  displayDate,
+  displayCurrentYear,
+};
+
+function displayDate(date, displayFormat = 'MM/dd/yyyy') {
   return format(parseISO(date), displayFormat);
 }
 
-export function displayCurrentYear() {
+function displayCurrentYear() {
   return new Date().getFullYear();
 }

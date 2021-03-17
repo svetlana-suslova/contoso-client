@@ -4,9 +4,9 @@ import {AppState} from 'reducers/rootReducer';
 import {isEmpty} from 'lodash';
 
 import {getRandomUid} from 'helpers/utils';
-import {displayDate} from 'helpers/dateFormatter';
+import dateFormatter from 'helpers/dateFormatter';
 
-import {loadStudentsStatistics} from '../actions/studentActions';
+import {loadStudentsStatistics} from 'actions/studentActions';
 import {Container} from './bootstrap';
 
 function AboutPage() {
@@ -32,7 +32,7 @@ function AboutPage() {
             <tbody>
               {statistics.map((statisticsItem) => (
                 <tr key={getRandomUid()}>
-                  <td>{displayDate(statisticsItem.enrollmentDate)}</td>
+                  <td>{dateFormatter.displayDate(statisticsItem.enrollmentDate)}</td>
                   <td>{statisticsItem.studentCount}</td>
                 </tr>
               ))}
