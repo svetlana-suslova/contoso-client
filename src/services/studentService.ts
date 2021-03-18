@@ -9,6 +9,10 @@ function getStudentsStatistics() {
   return httpHelper.get('/api/student/statistics', {});
 }
 
-function getStudents() {
-  return httpHelper.get('/api/student/list?pageNumber=1&pageSize=100', {});
+function getStudents(pageNumber, pageSize) {
+  let data = {
+    pageNumber,
+    pageSize,
+  };
+  return httpHelper.get('/api/student/list', data);
 }

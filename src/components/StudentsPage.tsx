@@ -1,18 +1,25 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {AppState} from 'reducers/rootReducer';
 import {isEmpty} from 'lodash';
 import {Container} from './bootstrap';
 import Student from './students/Student';
 import {loadStudents} from 'actions/studentActions';
+import Paginator from './common/Paginator';
 
 function StudentsPage() {
   const students: Array<Student> = useSelector((state: AppState) => state.student.list);
+  const totalCount: number = useSelector((state: AppState) => state.student.totalCount);
   const dispatch = useDispatch();
 
+  const [activePage, setActivePage] = useState(1);
+  const pageSize = 3;
+
   useEffect(() => {
-    if (isEmpty(students)) dispatch(loadStudents());
-  }, []);
+    if (isEmpty(students && totalCount)) {
+      dispatch(loadStudents(activePage, pageSize));
+    }
+  }, [activePage]);
 
   function render() {
     return (
@@ -33,6 +40,15 @@ function StudentsPage() {
             ))}
           </tbody>
         </table>
+        <br />
+        {totalCount && students && (
+          <Paginator
+            totalCount={totalCount}
+            pageSize={pageSize}
+            activePage={activePage}
+            setActivePage={setActivePage}
+          />
+        )}
       </Container>
     );
   }
