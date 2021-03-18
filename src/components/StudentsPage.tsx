@@ -6,6 +6,7 @@ import {Container, Button} from './bootstrap';
 import Student from './students/Student';
 import {loadStudents} from 'actions/studentActions';
 import Paginator from './common/Paginator';
+import StudentSearch from './students/StudentSearch';
 
 function StudentsPage() {
   const students: Array<Student> = useSelector((state: AppState) => state.student.list);
@@ -14,11 +15,12 @@ function StudentsPage() {
 
   const [activePage, setActivePage] = useState(1);
   const [sortOrder, setSortOrder] = useState('name');
+  const [search, setSearch] = useState('');
   const pageSize = 3;
 
   useEffect(() => {
     if (isEmpty(students && totalCount)) {
-      dispatch(loadStudents(sortOrder, activePage, pageSize));
+      dispatch(loadStudents(sortOrder, search, activePage, pageSize));
     }
   }, [activePage]);
 
@@ -37,13 +39,36 @@ function StudentsPage() {
         newSortOrder = 'name';
     }
     setSortOrder(newSortOrder);
-    dispatch(loadStudents(newSortOrder, activePage, pageSize));
+    dispatch(loadStudents(newSortOrder, search, activePage, pageSize));
+  }
+
+  function handleKeyPress(target) {
+    if (target.charCode === 13) {
+      dispatch(loadStudents(sortOrder, search, activePage, pageSize));
+    }
+  }
+
+  function onSearch() {
+    setActivePage(1);
+    dispatch(loadStudents(sortOrder, search, activePage, pageSize));
+  }
+
+  function onClearSearch() {
+    setSearch('');
+    dispatch(loadStudents(sortOrder, '', activePage, pageSize));
   }
 
   function render() {
     return (
       <Container>
         <h2>Students</h2>
+        <StudentSearch
+          search={search}
+          onChange={(e) => setSearch(e.target.value)}
+          onKeyPress={handleKeyPress}
+          onSearch={onSearch}
+          onClearSearch={onClearSearch}
+        />
         <table className="table">
           <thead>
             <tr>
@@ -67,14 +92,14 @@ function StudentsPage() {
           </tbody>
         </table>
         <br />
-        {totalCount && students && (
+        {totalCount && students ? (
           <Paginator
             totalCount={totalCount}
             pageSize={pageSize}
             activePage={activePage}
             setActivePage={setActivePage}
           />
-        )}
+        ) : null}
       </Container>
     );
   }
