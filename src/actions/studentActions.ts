@@ -16,9 +16,9 @@ export const loadStudentsStatistics = () => {
   }, null);
 };
 
-export const loadStudents = (pageNumber, pageSize) => {
+export const loadStudents = (sortOrder, pageNumber, pageSize) => {
   return helper.dispatchAsyncAction(async (dispatch) => {
-    let students = await service.getStudents(pageNumber, pageSize);
+    let students = await service.getStudents(sortOrder, pageNumber, pageSize);
     dispatch(loadStudentsSuccess(students.rows));
     dispatch(countStudentsSuccess(students.count));
   }, null);

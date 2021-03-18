@@ -9,8 +9,9 @@ function getStudentsStatistics() {
   return httpHelper.get('/api/student/statistics', {});
 }
 
-function getStudents(pageNumber, pageSize) {
+function getStudents(sortOrder, pageNumber, pageSize) {
   let data = {
+    sortOrder,
     pageNumber,
     pageSize,
   };
