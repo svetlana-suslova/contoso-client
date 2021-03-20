@@ -3,6 +3,7 @@ export default {
     statisticsList: [],
     list: [],
     totalCount: 0,
+    current: {},
   },
   common: {
     asyncAction: null,

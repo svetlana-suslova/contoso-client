@@ -4,18 +4,21 @@ import {AppState} from 'reducers/rootReducer';
 import {isEmpty} from 'lodash';
 import {Container, Button} from './bootstrap';
 import Student from './students/Student';
-import {loadStudents} from 'actions/studentActions';
+import {loadStudents, loadStudent} from 'actions/studentActions';
 import Paginator from './common/Paginator';
 import StudentSearch from './students/StudentSearch';
+import StudentDetails from './students/StudentDetails';
 
 function StudentsPage() {
   const students: Array<Student> = useSelector((state: AppState) => state.student.list);
+  const currentStudent: Student = useSelector((state: AppState) => state.student.current);
   const totalCount: number = useSelector((state: AppState) => state.student.totalCount);
   const dispatch = useDispatch();
 
   const [activePage, setActivePage] = useState(1);
   const [sortOrder, setSortOrder] = useState('name');
   const [search, setSearch] = useState('');
+  const [detailsModal, toggleDetailsModal] = useState(false);
   const pageSize = 3;
 
   useEffect(() => {
@@ -58,6 +61,15 @@ function StudentsPage() {
     dispatch(loadStudents(sortOrder, '', activePage, pageSize));
   }
 
+  function showDetailsModal(studentId) {
+    dispatch(loadStudent(studentId));
+    toggleDetailsModal(!detailsModal);
+  }
+
+  function closeDetailsModal() {
+    toggleDetailsModal(!detailsModal);
+  }
+
   function render() {
     return (
       <Container>
@@ -87,7 +99,7 @@ function StudentsPage() {
           </thead>
           <tbody>
             {students.map((student) => (
-              <Student key={student.id} student={student} />
+              <Student key={student.id} student={student} onDetailsClick={() => showDetailsModal(student.id)} />
             ))}
           </tbody>
         </table>
@@ -100,6 +112,7 @@ function StudentsPage() {
             setActivePage={setActivePage}
           />
         ) : null}
+        <StudentDetails visible={detailsModal} close={closeDetailsModal} currentStudent={currentStudent} />
       </Container>
     );
   }

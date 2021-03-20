@@ -5,9 +5,10 @@ import dateFormatter from 'helpers/dateFormatter';
 
 Student.propTypes = {
   student: PropTypes.object.isRequired,
+  onDetailsClick: PropTypes.func.isRequired,
 };
 
-function Student({student}) {
+function Student({student, onDetailsClick}) {
   const enrollmentDateDisplay = dateFormatter.displayDate(student.enrollmentDate);
   function render() {
     return (
@@ -15,6 +16,9 @@ function Student({student}) {
         <td>{student.lastName}</td>
         <td>{student.firstName}</td>
         <td>{enrollmentDateDisplay}</td>
+        <td className="tools">
+          <button onClick={onDetailsClick}>info</button>
+        </td>
       </tr>
     );
   }
