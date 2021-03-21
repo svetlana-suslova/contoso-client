@@ -4,6 +4,7 @@ export default {
   getStudentsStatistics,
   getStudents,
   getStudent,
+  saveStudent,
 };
 
 function getStudentsStatistics() {
@@ -22,4 +23,8 @@ function getStudents(sortOrder, search, pageNumber, pageSize) {
 
 function getStudent(id) {
   return httpHelper.get('/api/student/getStudent', {id});
+}
+
+function saveStudent(student) {
+  return httpHelper.post('/api/student/save', {student});
 }

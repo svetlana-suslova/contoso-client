@@ -20,6 +20,14 @@ const studentReducer = (state: StudentState = initialState.student, action) => {
     [types.LOAD_STUDENT](state, payload) {
       state.current = payload.student;
     },
+    [types.UPDATE_STUDENT](state, payload) {
+      let newList = [...state.list.filter((student) => student.id !== payload.student.id), {...payload.student}];
+      state.list = newList;
+    },
+    [types.CREATE_STUDENT](state, payload) {
+      let newList = [...state.list, {...payload.student}];
+      state.list = newList;
+    },
   });
 };
 

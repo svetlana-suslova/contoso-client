@@ -4,10 +4,12 @@ import {AppState} from 'reducers/rootReducer';
 import {isEmpty} from 'lodash';
 import {Container, Button} from './bootstrap';
 import Student from './students/Student';
-import {loadStudents, loadStudent} from 'actions/studentActions';
+import {loadStudents, loadStudent, saveStudent} from 'actions/studentActions';
 import Paginator from './common/Paginator';
 import StudentSearch from './students/StudentSearch';
 import StudentDetails from './students/StudentDetails';
+import StudentSave from './students/StudentSave';
+import uiHelper from 'helpers/uiHelper';
 
 function StudentsPage() {
   const students: Array<Student> = useSelector((state: AppState) => state.student.list);
@@ -19,6 +21,7 @@ function StudentsPage() {
   const [sortOrder, setSortOrder] = useState('name');
   const [search, setSearch] = useState('');
   const [detailsModal, toggleDetailsModal] = useState(false);
+  const [saveModal, toggleSaveModal] = useState(false);
   const pageSize = 3;
 
   useEffect(() => {
@@ -70,6 +73,25 @@ function StudentsPage() {
     toggleDetailsModal(!detailsModal);
   }
 
+  function showSaveModal(studentId) {
+    dispatch(loadStudent(studentId));
+    toggleSaveModal(!saveModal);
+  }
+
+  function closeSaveModal() {
+    toggleSaveModal(!saveModal);
+  }
+
+  async function onSaveStudent() {
+    let completed = await dispatch(saveStudent(currentStudent));
+
+    if (completed !== undefined) {
+      await dispatch(loadStudents(sortOrder, search, activePage, pageSize));
+      uiHelper.showMessage('Student updated!');
+    }
+    toggleSaveModal(!saveModal);
+  }
+
   function render() {
     return (
       <Container>
@@ -99,7 +121,12 @@ function StudentsPage() {
           </thead>
           <tbody>
             {students.map((student) => (
-              <Student key={student.id} student={student} onDetailsClick={() => showDetailsModal(student.id)} />
+              <Student
+                key={student.id}
+                student={student}
+                onDetailsClick={() => showDetailsModal(student.id)}
+                onSaveClick={() => showSaveModal(student.id)}
+              />
             ))}
           </tbody>
         </table>
@@ -113,6 +140,12 @@ function StudentsPage() {
           />
         ) : null}
         <StudentDetails visible={detailsModal} close={closeDetailsModal} currentStudent={currentStudent} />
+        <StudentSave
+          visible={saveModal}
+          close={closeSaveModal}
+          currentStudent={currentStudent}
+          saveStudent={onSaveStudent}
+        />
       </Container>
     );
   }
