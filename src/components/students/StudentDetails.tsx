@@ -1,6 +1,7 @@
 import React from 'react';
 import {Modal, Button, Container} from 'components/bootstrap';
 import PropTypes from 'prop-types';
+import {isEmpty} from 'lodash';
 import DisplayRow from 'components/common/DisplayRow';
 import dateFormatter from 'helpers/dateFormatter';
 
@@ -12,6 +13,7 @@ StudentDetails.propTypes = {
 
 function StudentDetails({currentStudent, visible, close}) {
   const enrollmentDateDisplay = dateFormatter.formatDate(currentStudent.enrollmentDate);
+
   function render() {
     return (
       <div>
@@ -24,6 +26,27 @@ function StudentDetails({currentStudent, visible, close}) {
               <DisplayRow label="Last Name" value={currentStudent.lastName} />
               <DisplayRow label="First Name" value={currentStudent.firstName} />
               <DisplayRow label="Enrollment Date" value={enrollmentDateDisplay} />
+              {!isEmpty(currentStudent.enrollments) ? (
+                <>
+                  <DisplayRow label="Enrollments" value="" />
+                  <table className="table">
+                    <thead>
+                      <tr>
+                        <th>Course Title</th>
+                        <th>Grade</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {currentStudent.enrollments.map((enrollment) => (
+                        <tr>
+                          <td>{enrollment.course.title}</td>
+                          <td>{enrollment.grade ? enrollment.grade : 'No grade'}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </>
+              ) : null}
             </Container>
           </Modal.Body>
           <Modal.Footer>
