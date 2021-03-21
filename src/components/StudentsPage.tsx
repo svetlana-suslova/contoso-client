@@ -85,13 +85,13 @@ function StudentsPage() {
           <thead>
             <tr>
               <th>
-                <Button type="link" value="name" onClick={changeSortOrder}>
+                <Button variant="link" value="name" onClick={changeSortOrder}>
                   Last Name
                 </Button>
               </th>
               <th>First Name</th>
               <th>
-                <Button type="link" value="date" onClick={changeSortOrder}>
+                <Button variant="link" value="date" onClick={changeSortOrder}>
                   Enrollment Date
                 </Button>
               </th>

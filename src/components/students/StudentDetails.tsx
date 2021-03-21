@@ -1,5 +1,5 @@
 import React from 'react';
-import {Modal, Button} from 'components/bootstrap';
+import {Modal, Button, Container} from 'components/bootstrap';
 import PropTypes from 'prop-types';
 import DisplayRow from 'components/common/DisplayRow';
 
@@ -17,15 +17,17 @@ function StudentDetails({currentStudent, visible, close}) {
           <Modal.Header closeButton onClick={close}>
             <Modal.Title>Student Details</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
-            <div className="form-horizontal">
+          <Modal.Body className="show-grid">
+            <Container>
               <DisplayRow label="Last Name" value={currentStudent.lastName} />
               <DisplayRow label="First Name" value={currentStudent.firstName} />
               <DisplayRow label="Enrollment Date" value={currentStudent.enrollmentDate} />
-            </div>
+            </Container>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={close}>Close</Button>
+            <Button variant="secondary" size="sm" onClick={close}>
+              Close
+            </Button>
           </Modal.Footer>
         </Modal>
       </div>

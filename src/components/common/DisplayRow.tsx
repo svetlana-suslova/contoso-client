@@ -1,13 +1,13 @@
 import React from 'react';
+import {Row} from 'components/bootstrap';
 import PropTypes from 'prop-types';
 
 const DisplayRow = ({label, value}) => {
   return (
-    <div className="form-group">
-      <label className="col-xs-3 form-label">{label}:</label>
-
-      <div className="col-xs-9">{value}</div>
-    </div>
+    <Row>
+      <label className="col-md-4 form-label">{label}:</label>
+      <div className="col-md-8">{value}</div>
+    </Row>
   );
 };
 
