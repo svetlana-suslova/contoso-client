@@ -9,7 +9,7 @@ Student.propTypes = {
 };
 
 function Student({student, onDetailsClick}) {
-  const enrollmentDateDisplay = dateFormatter.displayDate(student.enrollmentDate);
+  const enrollmentDateDisplay = dateFormatter.formatDate(student.enrollmentDate);
   function render() {
     return (
       <tr>

@@ -1,14 +1,21 @@
-import {format, parseISO} from 'date-fns';
+import moment from 'moment';
 
 export default {
-  displayDate,
+  formatDate,
   displayCurrentYear,
 };
 
-function displayDate(date, displayFormat = 'MM/dd/yyyy') {
-  return format(parseISO(date), displayFormat);
+function formatDate(dateStr) {
+  if (!dateStr) dateStr = getCurrentDate();
+
+  return moment(dateStr).format('MM/DD/YYYY');
 }
 
 function displayCurrentYear() {
-  return new Date().getFullYear();
+  return moment().format('YYYY');
+}
+
+function getCurrentDate() {
+  let now = new Date();
+  return now.toISOString();
 }

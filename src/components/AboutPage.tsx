@@ -32,7 +32,7 @@ function AboutPage() {
             <tbody>
               {statistics.map((statisticsItem) => (
                 <tr key={getRandomUid()}>
-                  <td>{dateFormatter.displayDate(statisticsItem.enrollmentDate)}</td>
+                  <td>{dateFormatter.formatDate(statisticsItem.enrollmentDate)}</td>
                   <td>{statisticsItem.studentCount}</td>
                 </tr>
               ))}

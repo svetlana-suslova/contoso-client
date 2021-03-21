@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Button} from 'components/bootstrap';
 import styled from 'styled-components';
 
 const SearchBlock = styled.div`
@@ -24,9 +25,15 @@ function StudentSearch({search, onChange, onKeyPress, onSearch, onClearSearch}) 
     return (
       <SearchBlock>
         {!search && <span>Find by name :</span>}
-        {search && <input type="button" value="Clear search" onClick={onClearSearch} />}
+        {search && (
+          <Button variant="light" size="sm" onClick={onClearSearch}>
+            Clear
+          </Button>
+        )}
         <SearchInput type="text" value={search} onChange={onChange} onKeyPress={onKeyPress} />
-        <input type="submit" value="Search" onClick={onSearch} />
+        <Button variant="secondary" size="sm" onClick={onSearch}>
+          Search
+        </Button>
       </SearchBlock>
     );
   }

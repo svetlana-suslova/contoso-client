@@ -2,6 +2,7 @@ import React from 'react';
 import {Modal, Button, Container} from 'components/bootstrap';
 import PropTypes from 'prop-types';
 import DisplayRow from 'components/common/DisplayRow';
+import dateFormatter from 'helpers/dateFormatter';
 
 StudentDetails.propTypes = {
   currentStudent: PropTypes.object.isRequired,
@@ -10,6 +11,7 @@ StudentDetails.propTypes = {
 };
 
 function StudentDetails({currentStudent, visible, close}) {
+  const enrollmentDateDisplay = dateFormatter.formatDate(currentStudent.enrollmentDate);
   function render() {
     return (
       <div>
@@ -21,7 +23,7 @@ function StudentDetails({currentStudent, visible, close}) {
             <Container>
               <DisplayRow label="Last Name" value={currentStudent.lastName} />
               <DisplayRow label="First Name" value={currentStudent.firstName} />
-              <DisplayRow label="Enrollment Date" value={currentStudent.enrollmentDate} />
+              <DisplayRow label="Enrollment Date" value={enrollmentDateDisplay} />
             </Container>
           </Modal.Body>
           <Modal.Footer>
