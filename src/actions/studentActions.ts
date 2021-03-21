@@ -11,9 +11,9 @@ const countStudentsSuccess = (count: number) => helper.getAction(types.COUNT_STU
 
 const loadStudentSuccess = (student) => helper.getAction(types.LOAD_STUDENT, {student});
 
-const updateStudentSuccess = (student) => helper.getAction(types.CREATE_STUDENT, {student});
+const updateStudentSuccess = (student) => helper.getAction(types.UPDATE_STUDENT, {student});
 
-const createStudentSuccess = (student) => helper.getAction(types.UPDATE_STUDENT, {student});
+const createStudentSuccess = (student) => helper.getAction(types.CREATE_STUDENT, {student});
 
 export const loadStudentsStatistics = () => {
   return helper.dispatchAsyncAction(async (dispatch) => {

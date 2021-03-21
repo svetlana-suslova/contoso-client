@@ -21,7 +21,7 @@ function StudentsPage() {
   const [sortOrder, setSortOrder] = useState('name');
   const [search, setSearch] = useState('');
   const [detailsModal, toggleDetailsModal] = useState(false);
-  const [saveModal, toggleSaveModal] = useState(false);
+  const [studentToEdit, setStudentToEdit] = useState<Student | null>(null);
   const pageSize = 3;
 
   useEffect(() => {
@@ -73,26 +73,32 @@ function StudentsPage() {
     toggleDetailsModal(!detailsModal);
   }
 
-  function showSaveModal(studentId) {
-    dispatch(loadStudent(studentId));
-    toggleSaveModal(!saveModal);
+  function showSaveModal(student) {
+    setStudentToEdit({...student});
+    dispatch(loadStudent(student.id));
   }
 
-  function closeSaveModal() {
-    toggleSaveModal(!saveModal);
+  function updateStudentState(field: string, value) {
+    if (!studentToEdit) return;
+
+    setStudentToEdit({...studentToEdit, [field]: value});
   }
 
   async function onSaveStudent() {
-    let completed = await dispatch(saveStudent(currentStudent));
-
+    let completed = await dispatch(saveStudent(studentToEdit));
     if (completed !== undefined) {
-      await dispatch(loadStudents(sortOrder, search, activePage, pageSize));
+      dispatch(loadStudents(sortOrder, search, activePage, pageSize));
       uiHelper.showMessage('Student updated!');
     }
-    toggleSaveModal(!saveModal);
+    closeSaveModal();
+  }
+
+  function closeSaveModal() {
+    setStudentToEdit(null);
   }
 
   function render() {
+    let editMode = studentToEdit ? true : false;
     return (
       <Container>
         <h2>Students</h2>
@@ -125,7 +131,7 @@ function StudentsPage() {
                 key={student.id}
                 student={student}
                 onDetailsClick={() => showDetailsModal(student.id)}
-                onSaveClick={() => showSaveModal(student.id)}
+                onSaveClick={() => showSaveModal(student)}
               />
             ))}
           </tbody>
@@ -140,12 +146,15 @@ function StudentsPage() {
           />
         ) : null}
         <StudentDetails visible={detailsModal} close={closeDetailsModal} currentStudent={currentStudent} />
-        <StudentSave
-          visible={saveModal}
-          close={closeSaveModal}
-          currentStudent={currentStudent}
-          saveStudent={onSaveStudent}
-        />
+        {editMode && (
+          <StudentSave
+            visible={editMode}
+            close={closeSaveModal}
+            student={studentToEdit}
+            saveStudent={onSaveStudent}
+            onChange={updateStudentState}
+          />
+        )}
       </Container>
     );
   }

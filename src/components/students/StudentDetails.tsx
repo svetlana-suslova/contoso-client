@@ -38,7 +38,7 @@ function StudentDetails({currentStudent, visible, close}) {
                     </thead>
                     <tbody>
                       {currentStudent.enrollments.map((enrollment) => (
-                        <tr>
+                        <tr key={enrollment.id}>
                           <td>{enrollment.course.title}</td>
                           <td>{enrollment.grade ? enrollment.grade : 'No grade'}</td>
                         </tr>
