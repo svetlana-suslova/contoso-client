@@ -3,6 +3,7 @@ import moment from 'moment';
 export default {
   formatDate,
   displayCurrentYear,
+  getCurrentDate,
 };
 
 function formatDate(dateStr) {

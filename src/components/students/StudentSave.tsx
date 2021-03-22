@@ -1,8 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {Modal, Button} from 'components/bootstrap';
+import {Modal, Button, Form} from 'components/bootstrap';
+import Flatpickr from 'react-flatpickr';
 import PropTypes from 'prop-types';
 import TextInput from 'components/common/TextInput';
 import validationHelper from 'helpers/validationHelper';
+
+const dateOptions = {dateFormat: 'm/d/Y'};
 
 StudentSave.propTypes = {
   student: PropTypes.object,
@@ -40,6 +43,11 @@ function StudentSave({student, visible, close, saveStudent, onChange}) {
 
     saveStudent();
   }
+
+  function onDateChange(date) {
+    onChange('enrollmentDate', new Date(date));
+  }
+
   function render() {
     const header = student.id ? 'Edit Student' : 'Create Student';
     return (
@@ -66,6 +74,12 @@ function StudentSave({student, visible, close, saveStudent, onChange}) {
                 placeholder="First Name"
                 error={errors.firstName}
               />
+              <Form.Group>
+                <Form.Label>Date</Form.Label>
+                <div>
+                  <Flatpickr value={student.enrollmentDate} options={dateOptions} onChange={onDateChange} />
+                </div>
+              </Form.Group>
             </form>
           </Modal.Body>
           <Modal.Footer>

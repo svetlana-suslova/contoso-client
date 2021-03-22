@@ -5,6 +5,7 @@ import {Provider} from 'react-redux';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'toastr/build/toastr.css';
+import 'flatpickr/dist/flatpickr.min.css';
 
 import {routes} from './routes';
 import App from './components/App';

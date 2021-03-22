@@ -10,6 +10,7 @@ import StudentSearch from './students/StudentSearch';
 import StudentDetails from './students/StudentDetails';
 import StudentSave from './students/StudentSave';
 import uiHelper from 'helpers/uiHelper';
+import dateFormatter from 'helpers/dateFormatter';
 
 function StudentsPage() {
   const students: Array<Student> = useSelector((state: AppState) => state.student.list);
@@ -73,7 +74,17 @@ function StudentsPage() {
     toggleDetailsModal(!detailsModal);
   }
 
-  function showSaveModal(student) {
+  function createStudent() {
+    setStudentToEdit({
+      id: 0,
+      enrollmentDate: dateFormatter.getCurrentDate(),
+      firstName: '',
+      lastName: '',
+      enrollments: [],
+    });
+  }
+
+  function updateStudent(student) {
     setStudentToEdit({...student});
     dispatch(loadStudent(student.id));
   }
@@ -123,6 +134,11 @@ function StudentsPage() {
                   Enrollment Date
                 </Button>
               </th>
+              <th>
+                <Button variant="link" onClick={createStudent}>
+                  Create New
+                </Button>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -131,7 +147,7 @@ function StudentsPage() {
                 key={student.id}
                 student={student}
                 onDetailsClick={() => showDetailsModal(student.id)}
-                onSaveClick={() => showSaveModal(student)}
+                onSaveClick={() => updateStudent(student)}
               />
             ))}
           </tbody>
