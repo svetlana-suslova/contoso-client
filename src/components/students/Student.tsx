@@ -1,6 +1,7 @@
 import React from 'react';
+import {Button} from 'components/bootstrap';
 import PropTypes from 'prop-types';
-
+import AppIcon from 'components/common/AppIcon';
 import dateFormatter from 'helpers/dateFormatter';
 
 Student.propTypes = {
@@ -19,9 +20,15 @@ function Student({student, onDetailsClick, onSaveClick, onDeleteClick}) {
         <td>{student.firstName}</td>
         <td>{enrollmentDateDisplay}</td>
         <td className="tools">
-          <button onClick={onDetailsClick}>info</button>
-          <button onClick={onSaveClick}>edit</button>
-          <button onClick={onDeleteClick}>delete</button>
+          <Button variant="link" onClick={onDetailsClick}>
+            <AppIcon icon="info" color="black" />
+          </Button>
+          <Button variant="link" onClick={onSaveClick}>
+            <AppIcon icon="edit" color="black" />
+          </Button>
+          <Button variant="link" onClick={onDeleteClick}>
+            <AppIcon icon="delete" color="black" />
+          </Button>
         </td>
       </tr>
     );
