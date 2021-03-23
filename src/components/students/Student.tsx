@@ -7,9 +7,10 @@ Student.propTypes = {
   student: PropTypes.object.isRequired,
   onDetailsClick: PropTypes.func.isRequired,
   onSaveClick: PropTypes.func.isRequired,
+  onDeleteClick: PropTypes.func.isRequired,
 };
 
-function Student({student, onDetailsClick, onSaveClick}) {
+function Student({student, onDetailsClick, onSaveClick, onDeleteClick}) {
   const enrollmentDateDisplay = dateFormatter.formatDate(student.enrollmentDate);
   function render() {
     return (
@@ -20,6 +21,7 @@ function Student({student, onDetailsClick, onSaveClick}) {
         <td className="tools">
           <button onClick={onDetailsClick}>info</button>
           <button onClick={onSaveClick}>edit</button>
+          <button onClick={onDeleteClick}>delete</button>
         </td>
       </tr>
     );

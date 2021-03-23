@@ -14,6 +14,12 @@ const commonReducer = (state: CommonState = initialState.common, action) => {
     [actions.ASYNC_ACTION_END](state) {
       state.asyncAction = null;
     },
+    [actions.CONFIRM_ACTION](state, payload) {
+      state.confirmAction = payload;
+    },
+    [actions.CONFIRM_ACTION_CANCEL](state) {
+      state.confirmAction = null;
+    },
   });
 };
 

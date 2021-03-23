@@ -4,13 +4,14 @@ import {AppState} from 'reducers/rootReducer';
 import {isEmpty} from 'lodash';
 import {Container, Button} from './bootstrap';
 import Student from './students/Student';
-import {loadStudents, loadStudent, saveStudent} from 'actions/studentActions';
+import {loadStudents, loadStudent, saveStudent, deleteStudent} from 'actions/studentActions';
 import Paginator from './common/Paginator';
 import StudentSearch from './students/StudentSearch';
 import StudentDetails from './students/StudentDetails';
 import StudentSave from './students/StudentSave';
 import uiHelper from 'helpers/uiHelper';
 import dateFormatter from 'helpers/dateFormatter';
+import {confirmAction} from 'actions/commonActions';
 
 function StudentsPage() {
   const students: Array<Student> = useSelector((state: AppState) => state.student.list);
@@ -108,6 +109,21 @@ function StudentsPage() {
     setStudentToEdit(null);
   }
 
+  function onDeleteStudent(id) {
+    dispatch(
+      confirmAction({
+        title: 'Delete student',
+        action: async () => {
+          let completed = await dispatch(deleteStudent(id));
+          if (completed !== undefined) {
+            dispatch(loadStudents(sortOrder, search, activePage, pageSize));
+            uiHelper.showMessage('Student deleted!');
+          }
+        },
+      })
+    );
+  }
+
   function render() {
     let editMode = studentToEdit ? true : false;
     return (
@@ -148,6 +164,7 @@ function StudentsPage() {
                 student={student}
                 onDetailsClick={() => showDetailsModal(student.id)}
                 onSaveClick={() => updateStudent(student)}
+                onDeleteClick={() => onDeleteStudent(student.id)}
               />
             ))}
           </tbody>

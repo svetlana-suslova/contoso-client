@@ -5,6 +5,7 @@ export default {
   getStudents,
   getStudent,
   saveStudent,
+  deleteStudent,
 };
 
 function getStudentsStatistics() {
@@ -27,4 +28,8 @@ function getStudent(id) {
 
 function saveStudent(student) {
   return httpHelper.post('/api/student/save', {student});
+}
+
+function deleteStudent(id) {
+  return httpHelper.delete(`/api/student/delete/${id}`);
 }

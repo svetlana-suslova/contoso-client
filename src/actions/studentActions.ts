@@ -15,6 +15,8 @@ const updateStudentSuccess = (student) => helper.getAction(types.UPDATE_STUDENT,
 
 const createStudentSuccess = (student) => helper.getAction(types.CREATE_STUDENT, {student});
 
+const deleteStudentSuccess = (id) => helper.getAction(types.DELETE_STUDENT, {id});
+
 export const loadStudentsStatistics = () => {
   return helper.dispatchAsyncAction(async (dispatch) => {
     let statistics = await service.getStudentsStatistics();
@@ -41,5 +43,14 @@ export const saveStudent = (currentStudent) => {
   return helper.dispatchAsyncAction(async (dispatch) => {
     let student = await service.saveStudent(currentStudent);
     currentStudent.id ? dispatch(updateStudentSuccess(student)) : dispatch(createStudentSuccess(student));
+  }, null);
+};
+
+export const deleteStudent = (id) => {
+  return helper.dispatchAsyncAction(async (dispatch) => {
+    let response = await service.deleteStudent(id);
+    if (response) {
+      dispatch(deleteStudentSuccess(id));
+    }
   }, null);
 };

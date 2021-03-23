@@ -7,5 +7,6 @@ export default {
   },
   common: {
     asyncAction: null,
+    confirmAction: null,
   },
 };
