@@ -2,12 +2,19 @@ import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {AppState} from 'reducers/rootReducer';
 import {isEmpty} from 'lodash';
+import styled from 'styled-components';
 
 import {getRandomUid} from 'helpers/utils';
 import dateFormatter from 'helpers/dateFormatter';
 
 import {loadStudentsStatistics} from 'actions/studentActions';
 import {Container} from './bootstrap';
+
+const Heading = styled.h1`
+  margin: 20px 0;
+  font-size: 2rem;
+}
+`;
 
 function AboutPage() {
   const statistics: Array<StatisticsItem> = useSelector((state: AppState) => state.student.statisticsList);
@@ -20,7 +27,7 @@ function AboutPage() {
   function render() {
     return (
       <Container>
-        <h2>Students statistics</h2>
+        <Heading>Students statistics</Heading>
         <div className="col-md-4">
           <table className="table">
             <thead>

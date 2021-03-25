@@ -12,6 +12,13 @@ import StudentSave from './students/StudentSave';
 import uiHelper from 'helpers/uiHelper';
 import dateFormatter from 'helpers/dateFormatter';
 import {confirmAction} from 'actions/commonActions';
+import styled from 'styled-components';
+
+const Heading = styled.h1`
+  margin: 20px 0;
+  font-size: 2rem;
+}
+`;
 
 function StudentsPage() {
   const students: Array<Student> = useSelector((state: AppState) => state.student.list);
@@ -128,7 +135,7 @@ function StudentsPage() {
     let editMode = studentToEdit ? true : false;
     return (
       <Container>
-        <h2>Students</h2>
+        <Heading>Students</Heading>
         <StudentSearch
           search={search}
           onChange={(e) => setSearch(e.target.value)}
