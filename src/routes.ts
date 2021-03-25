@@ -1,6 +1,6 @@
 import HomePage from 'components/HomePage';
 import AboutPage from 'components/AboutPage';
-import StudentsPage from 'components/StudentsPage';
+import StudentsPage from 'components/students/StudentsPage';
 
 export const routes = [
   {
