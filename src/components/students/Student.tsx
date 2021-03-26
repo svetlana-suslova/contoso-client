@@ -2,7 +2,7 @@ import React from 'react';
 import {Button} from 'components/bootstrap';
 import PropTypes from 'prop-types';
 import AppIcon from 'components/common/AppIcon';
-import dateFormatter from 'helpers/dateFormatter';
+import dateHelper from 'helpers/dateHelper';
 
 Student.propTypes = {
   student: PropTypes.object.isRequired,
@@ -12,7 +12,7 @@ Student.propTypes = {
 };
 
 function Student({student, onDetailsClick, onSaveClick, onDeleteClick}) {
-  const enrollmentDateDisplay = dateFormatter.formatDate(student.enrollmentDate);
+  const enrollmentDateDisplay = dateHelper.displayDate(student.enrollmentDate);
   function render() {
     return (
       <tr>

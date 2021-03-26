@@ -3,7 +3,7 @@ import {Modal, Button, Container} from 'components/bootstrap';
 import PropTypes from 'prop-types';
 import {isEmpty} from 'lodash';
 import DisplayRow from 'components/common/DisplayRow';
-import dateFormatter from 'helpers/dateFormatter';
+import dateHelper from 'helpers/dateHelper';
 
 StudentDetails.propTypes = {
   currentStudent: PropTypes.object.isRequired,
@@ -12,7 +12,9 @@ StudentDetails.propTypes = {
 };
 
 function StudentDetails({currentStudent, visible, close}) {
-  const enrollmentDateDisplay = dateFormatter.formatDate(currentStudent.enrollmentDate);
+  let enrollmentDateDisplay = currentStudent.enrollmentDate
+    ? dateHelper.displayDate(currentStudent.enrollmentDate)
+    : null;
 
   function render() {
     return (

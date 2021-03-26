@@ -4,8 +4,11 @@ import Flatpickr from 'react-flatpickr';
 import PropTypes from 'prop-types';
 import TextInput from 'components/common/TextInput';
 import validationHelper from 'helpers/validationHelper';
+import config from 'helpers/configHelper';
 
-const dateOptions = {dateFormat: 'm/d/Y'};
+const dateOptions = {
+  dateFormat: config.format.datePicker,
+};
 
 StudentSave.propTypes = {
   student: PropTypes.object,

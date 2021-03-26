@@ -5,7 +5,7 @@ import {isEmpty} from 'lodash';
 import styled from 'styled-components';
 
 import {getRandomUid} from 'helpers/utils';
-import dateFormatter from 'helpers/dateFormatter';
+import dateHelper from 'helpers/dateHelper';
 
 import {loadStudentsStatistics} from 'actions/studentActions';
 import {Container} from './bootstrap';
@@ -39,7 +39,7 @@ function AboutPage() {
             <tbody>
               {statistics.map((statisticsItem) => (
                 <tr key={getRandomUid()}>
-                  <td>{dateFormatter.formatDate(statisticsItem.enrollmentDate)}</td>
+                  <td>{dateHelper.displayDate(statisticsItem.enrollmentDate)}</td>
                   <td>{statisticsItem.studentCount}</td>
                 </tr>
               ))}

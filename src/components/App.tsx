@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import {isEmpty, get} from 'lodash';
 
 import AppPage from 'components/common/AppPage';
-import dateFormatter from 'helpers/dateFormatter';
+import dateHelper from 'helpers/dateHelper';
 import ErrorBoundary from './ErrorBoundary';
 import Confirm from 'components/common/Confirm';
 import {AppState} from 'reducers/rootReducer';
@@ -78,7 +78,7 @@ function App(props) {
           {props.children}
           <div className="container">
             <hr />
-            <p>&copy; {dateFormatter.displayCurrentYear()} - Contoso University</p>
+            <p>&copy; {dateHelper.displayCurrentYear()} - Contoso University</p>
           </div>
         </div>
       </ErrorBoundary>

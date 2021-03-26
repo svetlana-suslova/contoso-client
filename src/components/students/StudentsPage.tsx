@@ -10,7 +10,7 @@ import StudentSearch from './StudentSearch';
 import StudentDetails from './StudentDetails';
 import StudentSave from './StudentSave';
 import uiHelper from 'helpers/uiHelper';
-import dateFormatter from 'helpers/dateFormatter';
+import dateHelper from 'helpers/dateHelper';
 import {confirmAction} from 'actions/commonActions';
 import styled from 'styled-components';
 
@@ -85,7 +85,7 @@ function StudentsPage() {
   function createStudent() {
     setStudentToEdit({
       id: 0,
-      enrollmentDate: dateFormatter.getCurrentDate(),
+      enrollmentDate: dateHelper.getCurrentDate(),
       firstName: '',
       lastName: '',
       enrollments: [],
