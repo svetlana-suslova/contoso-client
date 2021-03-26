@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import {isEmpty} from 'lodash';
 import DisplayRow from 'components/common/DisplayRow';
 import dateHelper from 'helpers/dateHelper';
+import COMMON from 'constants/literals/common';
+import STUDENT from 'constants/literals/students';
 
 StudentDetails.propTypes = {
   currentStudent: PropTypes.object.isRequired,
@@ -21,7 +23,7 @@ function StudentDetails({currentStudent, visible, close}) {
       <div>
         <Modal show={visible}>
           <Modal.Header closeButton onClick={close}>
-            <Modal.Title>Student Details</Modal.Title>
+            <Modal.Title>{STUDENT.DETAILS}</Modal.Title>
           </Modal.Header>
           <Modal.Body className="show-grid">
             <Container>
@@ -42,7 +44,7 @@ function StudentDetails({currentStudent, visible, close}) {
                       {currentStudent.enrollments.map((enrollment) => (
                         <tr key={enrollment.id}>
                           <td>{enrollment.course.title}</td>
-                          <td>{enrollment.grade ? enrollment.grade : 'No grade'}</td>
+                          <td>{enrollment.grade ? enrollment.grade : STUDENT.NO_GRADE}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -53,7 +55,7 @@ function StudentDetails({currentStudent, visible, close}) {
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" size="sm" onClick={close}>
-              Close
+              {COMMON.CLOSE}
             </Button>
           </Modal.Footer>
         </Modal>

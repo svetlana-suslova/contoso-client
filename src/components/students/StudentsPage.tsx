@@ -11,6 +11,8 @@ import StudentDetails from './StudentDetails';
 import StudentSave from './StudentSave';
 import uiHelper from 'helpers/uiHelper';
 import dateHelper from 'helpers/dateHelper';
+import SORT_OPTIONS from 'constants/sortOptions';
+import STUDENT from 'constants/literals/students';
 import {confirmAction} from 'actions/commonActions';
 import styled from 'styled-components';
 
@@ -27,7 +29,7 @@ function StudentsPage() {
   const dispatch = useDispatch();
 
   const [activePage, setActivePage] = useState(1);
-  const [sortOrder, setSortOrder] = useState('name');
+  const [sortOrder, setSortOrder] = useState(SORT_OPTIONS.NAME);
   const [search, setSearch] = useState('');
   const [detailsModal, toggleDetailsModal] = useState(false);
   const [studentToEdit, setStudentToEdit] = useState<Student | null>(null);
@@ -44,14 +46,14 @@ function StudentsPage() {
     let newSortOrder = '';
 
     switch (option) {
-      case 'name':
-        newSortOrder = sortOrder === 'name' ? 'name_desc' : 'name';
+      case SORT_OPTIONS.NAME:
+        newSortOrder = sortOrder === SORT_OPTIONS.NAME ? SORT_OPTIONS.NAME_DESC : SORT_OPTIONS.NAME;
         break;
-      case 'date':
-        newSortOrder = sortOrder === 'date' ? 'date_desc' : 'date';
+      case SORT_OPTIONS.DATE:
+        newSortOrder = sortOrder === SORT_OPTIONS.DATE ? SORT_OPTIONS.DATE_DESC : SORT_OPTIONS.DATE;
         break;
       default:
-        newSortOrder = 'name';
+        newSortOrder = SORT_OPTIONS.NAME;
     }
     setSortOrder(newSortOrder);
     dispatch(loadStudents(newSortOrder, search, activePage, pageSize));
@@ -104,10 +106,11 @@ function StudentsPage() {
   }
 
   async function onSaveStudent() {
-    let completed = await dispatch(saveStudent(studentToEdit));
+    const completed = await dispatch(saveStudent(studentToEdit));
+    const message = studentToEdit && studentToEdit.id ? STUDENT.UPDATED : STUDENT.CREATED;
     if (completed !== undefined) {
       dispatch(loadStudents(sortOrder, search, activePage, pageSize));
-      uiHelper.showMessage('Student updated!');
+      uiHelper.showMessage(message);
     }
     closeSaveModal();
   }
@@ -119,12 +122,12 @@ function StudentsPage() {
   function onDeleteStudent(id) {
     dispatch(
       confirmAction({
-        title: 'Delete student',
+        title: STUDENT.DELETE,
         action: async () => {
           let completed = await dispatch(deleteStudent(id));
           if (completed !== undefined) {
             dispatch(loadStudents(sortOrder, search, activePage, pageSize));
-            uiHelper.showMessage('Student deleted!');
+            uiHelper.showMessage(STUDENT.DELETED);
           }
         },
       })

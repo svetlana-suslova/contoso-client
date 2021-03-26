@@ -3,6 +3,8 @@ import {Modal, Button, Form} from 'components/bootstrap';
 import Flatpickr from 'react-flatpickr';
 import PropTypes from 'prop-types';
 import TextInput from 'components/common/TextInput';
+import STUDENT from 'constants/literals/students';
+import COMMON from 'constants/literals/common';
 import validationHelper from 'helpers/validationHelper';
 import config from 'helpers/configHelper';
 
@@ -29,11 +31,11 @@ function StudentSave({student, visible, close, saveStudent, onChange}) {
     let errors = {lastName: '', firstName: ''};
 
     if (!student.lastName) {
-      errors.lastName = 'Last Name field is required!';
+      errors.lastName = COMMON.LAST_NAME_REQ;
     }
 
     if (!student.firstName) {
-      errors.firstName = 'First Name field is required!';
+      errors.firstName = COMMON.FIRST_NAME_REQ;
     }
 
     setErrors(errors);
@@ -52,7 +54,7 @@ function StudentSave({student, visible, close, saveStudent, onChange}) {
   }
 
   function render() {
-    const header = student.id ? 'Edit Student' : 'Create Student';
+    const header = student.id ? STUDENT.EDIT : STUDENT.CREATE;
     return (
       <div>
         <Modal show={visible}>
@@ -87,10 +89,10 @@ function StudentSave({student, visible, close, saveStudent, onChange}) {
           </Modal.Body>
           <Modal.Footer>
             <Button size="sm" onClick={save}>
-              Save
+              {COMMON.SAVE}
             </Button>
             <Button variant="secondary" size="sm" onClick={close}>
-              Close
+              {COMMON.CLOSE}
             </Button>
           </Modal.Footer>
         </Modal>

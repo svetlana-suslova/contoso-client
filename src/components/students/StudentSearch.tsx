@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Button} from 'components/bootstrap';
 import styled from 'styled-components';
+import COMMON from 'constants/literals/common';
 
 const SearchBlock = styled.div`
   margin-top: 20px;
@@ -27,12 +28,12 @@ function StudentSearch({search, onChange, onKeyPress, onSearch, onClearSearch}) 
         {!search && <span>Find by name :</span>}
         {search && (
           <Button variant="light" size="sm" onClick={onClearSearch}>
-            Clear
+            {COMMON.CLEAR}
           </Button>
         )}
         <SearchInput type="text" value={search} onChange={onChange} onKeyPress={onKeyPress} />
         <Button variant="secondary" size="sm" onClick={onSearch}>
-          Search
+          {COMMON.SEARCH}
         </Button>
       </SearchBlock>
     );
