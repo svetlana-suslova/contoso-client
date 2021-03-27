@@ -1,4 +1,9 @@
-import {ASYNC_ACTION_START, ASYNC_ACTION_END, CONFIRM_ACTION, CONFIRM_ACTION_CANCEL} from 'action_types/actionTypes';
+import {
+  ASYNC_ACTION_START,
+  ASYNC_ACTION_END,
+  CONFIRM_ACTION,
+  CONFIRM_ACTION_CANCEL,
+} from 'action_types/commonActionTypes';
 
 import helper from './actionHelper';
 

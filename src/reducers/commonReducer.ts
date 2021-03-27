@@ -1,5 +1,5 @@
 import helper from './reducerHelper';
-import * as actions from 'action_types/actionTypes';
+import * as actions from 'action_types/commonActionTypes';
 import initialState from './initialState';
 
 type CommonState = {

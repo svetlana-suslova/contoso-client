@@ -1,4 +1,4 @@
-import * as types from 'action_types/actionTypes';
+import * as types from 'action_types/studentsActionTypes';
 import helper from './reducerHelper';
 import initialState from './initialState';
 

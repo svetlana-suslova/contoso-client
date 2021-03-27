@@ -1,4 +1,4 @@
-import * as types from 'action_types/actionTypes';
+import * as types from 'action_types/studentsActionTypes';
 import helper from './actionHelper';
 import service from 'services/studentService';
 
