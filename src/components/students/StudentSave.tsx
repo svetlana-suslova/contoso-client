@@ -82,7 +82,12 @@ function StudentSave({student, visible, close, saveStudent, onChange}) {
               <Form.Group>
                 <Form.Label>Date</Form.Label>
                 <div>
-                  <Flatpickr value={student.enrollmentDate} options={dateOptions} onChange={onDateChange} />
+                  <Flatpickr
+                    key={Date.now()}
+                    value={student.enrollmentDate}
+                    options={dateOptions}
+                    onChange={onDateChange}
+                  />
                 </div>
               </Form.Group>
             </form>
