@@ -2,19 +2,13 @@ import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {AppState} from 'reducers/rootReducer';
 import {isEmpty} from 'lodash';
-import styled from 'styled-components';
+import {Heading} from 'styles/shared';
 
 import {getRandomUid} from 'helpers/utils';
 import dateHelper from 'helpers/dateHelper';
 
 import {loadStudentsStatistics} from 'actions/studentActions';
 import {Container} from './bootstrap';
-
-const Heading = styled.h1`
-  margin: 20px 0;
-  font-size: 2rem;
-}
-`;
 
 function AboutPage() {
   const statistics: Array<StatisticsItem> = useSelector((state: AppState) => state.student.statisticsList);

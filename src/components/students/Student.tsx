@@ -3,6 +3,7 @@ import {Button} from 'components/bootstrap';
 import PropTypes from 'prop-types';
 import AppIcon from 'components/common/AppIcon';
 import dateHelper from 'helpers/dateHelper';
+import {colors} from 'styles/shared';
 
 Student.propTypes = {
   student: PropTypes.object.isRequired,
@@ -21,13 +22,13 @@ function Student({student, onDetailsClick, onSaveClick, onDeleteClick}) {
         <td>{enrollmentDateDisplay}</td>
         <td className="tools">
           <Button variant="link" onClick={onDetailsClick}>
-            <AppIcon icon="info" color="black" />
+            <AppIcon icon="info" color={colors.black} />
           </Button>
           <Button variant="link" onClick={onSaveClick}>
-            <AppIcon icon="edit" color="black" />
+            <AppIcon icon="edit" color={colors.black} />
           </Button>
           <Button variant="link" onClick={onDeleteClick}>
-            <AppIcon icon="delete" color="black" />
+            <AppIcon icon="delete" color={colors.black} />
           </Button>
         </td>
       </tr>

@@ -14,13 +14,7 @@ import dateHelper from 'helpers/dateHelper';
 import SORT_OPTIONS from 'constants/sortOptions';
 import STUDENT from 'constants/literals/students';
 import {confirmAction} from 'actions/commonActions';
-import styled from 'styled-components';
-
-const Heading = styled.h1`
-  margin: 20px 0;
-  font-size: 2rem;
-}
-`;
+import {Heading} from 'styles/shared';
 
 function StudentsPage() {
   const students: Array<Student> = useSelector((state: AppState) => state.student.list);

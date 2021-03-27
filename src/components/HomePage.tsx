@@ -2,15 +2,14 @@ import React from 'react';
 import {Container, Row} from './bootstrap';
 import config from 'helpers/configHelper';
 import styled from 'styled-components';
+import {colors} from 'styles/shared';
 
 const StyledLink = styled.a`
-  color: #333;
-  background-color: #fff;
-  border-color: #ccc;
+  background-color: ${colors.white};
+  border-color: ${colors.grey};
   &:hover {
-    color: #333;
-    background-color: #e6e6e6;
-    border-color: #adadad;
+    background-color: ${colors.grey_lighter};
+    border-color: ${colors.grey_light};
   }
 `;
 
