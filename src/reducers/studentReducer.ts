@@ -12,10 +12,8 @@ const studentReducer = (state: StudentState = initialState.student, action) => {
       state.statisticsList = payload.statistics;
     },
     [types.LOAD_STUDENTS](state, payload) {
-      state.list = payload.students;
-    },
-    [types.COUNT_STUDENTS](state, payload) {
-      state.totalCount = payload.count;
+      state.list = payload.students.rows;
+      state.totalCount = payload.students.count;
     },
     [types.LOAD_STUDENT](state, payload) {
       state.current = payload.student;

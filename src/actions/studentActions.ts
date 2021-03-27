@@ -7,8 +7,6 @@ const loadStudentsStatisticsSuccess = (statistics: Array<any>) =>
 
 const loadStudentsSuccess = (students: Array<any>) => helper.getAction(types.LOAD_STUDENTS, {students});
 
-const countStudentsSuccess = (count: number) => helper.getAction(types.COUNT_STUDENTS, {count});
-
 const loadStudentSuccess = (student) => helper.getAction(types.LOAD_STUDENT, {student});
 
 const updateStudentSuccess = (student) => helper.getAction(types.UPDATE_STUDENT, {student});
@@ -27,8 +25,7 @@ export const loadStudentsStatistics = () => {
 export const loadStudents = (sortOrder, search, pageNumber, pageSize) => {
   return helper.dispatchAsyncAction(async (dispatch) => {
     let students = await service.getStudents(sortOrder, search, pageNumber, pageSize);
-    dispatch(loadStudentsSuccess(students.rows));
-    dispatch(countStudentsSuccess(students.count));
+    dispatch(loadStudentsSuccess(students));
   }, null);
 };
 
