@@ -15,7 +15,7 @@ function AboutPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isEmpty(statistics)) dispatch(loadStudentsStatistics());
+    dispatch(loadStudentsStatistics());
   }, []);
 
   function render() {

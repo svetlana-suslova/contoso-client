@@ -120,7 +120,8 @@ function StudentsPage() {
         action: async () => {
           let completed = await dispatch(deleteStudent(id));
           if (completed !== undefined) {
-            dispatch(loadStudents(sortOrder, search, activePage, pageSize));
+            setActivePage(1);
+            dispatch(loadStudents(sortOrder, search, 1, pageSize));
             uiHelper.showMessage(STUDENT.DELETED);
           }
         },
