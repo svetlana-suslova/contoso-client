@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {Pagination} from 'react-bootstrap';
 
@@ -10,12 +10,22 @@ Paginator.propTypes = {
 };
 
 function Paginator({totalCount, pageSize, activePage, setActivePage}) {
-  function render() {
+  const [numberOfPages, setNumberOfPages] = useState(0);
+  const [pages, setPages] = useState<number[]>([]);
+
+  useEffect(() => {
     const numberOfPages = Math.ceil(totalCount / pageSize);
-    const pages: number[] = [];
+    let pages: number[] = [];
+
     for (let i = 1; i <= numberOfPages; i++) {
       pages.push(i);
     }
+
+    setPages(pages);
+    setNumberOfPages(numberOfPages);
+  }, [totalCount]);
+
+  function render() {
     return (
       <>
         <div>

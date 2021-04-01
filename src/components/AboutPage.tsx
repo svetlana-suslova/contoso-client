@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {AppState} from 'reducers/rootReducer';
-import {isEmpty} from 'lodash';
 import {Heading} from 'styles/shared';
 
 import {getRandomUid} from 'helpers/utils';
