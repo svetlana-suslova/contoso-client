@@ -1,16 +1,15 @@
 import React from 'react';
 import {Container, Row} from './bootstrap';
-
+import config from 'helpers/configHelper';
 import styled from 'styled-components';
+import {colors} from 'styles/shared';
 
 const StyledLink = styled.a`
-  color: #333;
-  background-color: #fff;
-  border-color: #ccc;
+  background-color: ${colors.white};
+  border-color: ${colors.grey};
   &:hover {
-    color: #333;
-    background-color: #e6e6e6;
-    border-color: #adadad;
+    background-color: ${colors.grey_lighter};
+    border-color: ${colors.grey_light};
   }
 `;
 
@@ -37,9 +36,7 @@ function HomePage() {
               SPA techniques for client side.
             </p>
             <p>
-              <StyledLink
-                className="btn btn-default"
-                href="http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc/">
+              <StyledLink className="btn btn-default" href={config.externalLinks.tutorial}>
                 See original tutorial here &raquo;
               </StyledLink>
             </p>
@@ -48,7 +45,7 @@ function HomePage() {
             <h2>Source</h2>
             <p>See the latest source code on GitHub.</p>
             <p>
-              <StyledLink className="btn btn-default" href="https://github.com/yegor-sytnyk/contoso-express">
+              <StyledLink className="btn btn-default" href={config.externalLinks.github}>
                 Check out source code on github &raquo;
               </StyledLink>
             </p>

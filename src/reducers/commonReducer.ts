@@ -1,5 +1,5 @@
 import helper from './reducerHelper';
-import * as actions from 'action_types/actionTypes';
+import * as actions from 'action_types/commonActionTypes';
 import initialState from './initialState';
 
 type CommonState = {
@@ -13,6 +13,12 @@ const commonReducer = (state: CommonState = initialState.common, action) => {
     },
     [actions.ASYNC_ACTION_END](state) {
       state.asyncAction = null;
+    },
+    [actions.CONFIRM_ACTION](state, payload) {
+      state.confirmAction = payload;
+    },
+    [actions.CONFIRM_ACTION_CANCEL](state) {
+      state.confirmAction = null;
     },
   });
 };

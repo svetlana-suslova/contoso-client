@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {AppState} from 'reducers/rootReducer';
-import {isEmpty} from 'lodash';
+import {Heading} from 'styles/shared';
 
 import {getRandomUid} from 'helpers/utils';
-import dateFormatter from 'helpers/dateFormatter';
+import dateHelper from 'helpers/dateHelper';
 
 import {loadStudentsStatistics} from 'actions/studentActions';
 import {Container} from './bootstrap';
@@ -14,13 +14,13 @@ function AboutPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isEmpty(statistics)) dispatch(loadStudentsStatistics());
+    dispatch(loadStudentsStatistics());
   }, []);
 
   function render() {
     return (
       <Container>
-        <h2>Students statistics</h2>
+        <Heading>Students statistics</Heading>
         <div className="col-md-4">
           <table className="table">
             <thead>
@@ -32,7 +32,7 @@ function AboutPage() {
             <tbody>
               {statistics.map((statisticsItem) => (
                 <tr key={getRandomUid()}>
-                  <td>{dateFormatter.displayDate(statisticsItem.enrollmentDate)}</td>
+                  <td>{dateHelper.displayDate(statisticsItem.enrollmentDate)}</td>
                   <td>{statisticsItem.studentCount}</td>
                 </tr>
               ))}

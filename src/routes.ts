@@ -1,5 +1,6 @@
 import HomePage from 'components/HomePage';
 import AboutPage from 'components/AboutPage';
+import StudentsPage from 'components/students/StudentsPage';
 
 export const routes = [
   {
@@ -17,6 +18,14 @@ export const routes = [
     pageProps: {
       pageId: 'about',
       title: 'About',
+    },
+  },
+  {
+    path: '/students',
+    component: StudentsPage,
+    pageProps: {
+      pageId: 'students',
+      title: 'Students',
     },
   },
 ];
