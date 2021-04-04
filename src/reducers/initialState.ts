@@ -9,4 +9,7 @@ export default {
     asyncAction: null,
     confirmAction: null,
   },
+  course: {
+    list: [],
+  },
 };
