@@ -34,6 +34,9 @@ function Navigation() {
               <Nav.Link as={Link} href="/students" to="/students" active={pathName === '/students'}>
                 Students
               </Nav.Link>
+              <Nav.Link as={Link} href="/courses" to="/courses" active={pathName === '/courses'}>
+                Courses
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
