@@ -14,5 +14,6 @@ export default {
   },
   department: {
     list: [],
+    current: {},
   },
 };

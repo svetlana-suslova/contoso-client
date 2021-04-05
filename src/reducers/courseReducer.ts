@@ -7,6 +7,9 @@ const studentReducer = (state = initialState.course, action) => {
     [types.LOAD_COURSES](state, payload) {
       state.list = payload.courses;
     },
+    [types.LOAD_COURSE](state, payload) {
+      state.current = payload.course;
+    },
   });
 };
 
