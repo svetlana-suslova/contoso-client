@@ -9,5 +9,6 @@ const COMMON = {
   SURE: 'Are you sure ?',
   NO: 'No',
   YES: 'Yes',
+  FILTER: 'Filter',
 };
 export default COMMON;
