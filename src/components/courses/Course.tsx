@@ -7,9 +7,10 @@ import {colors} from 'styles/shared';
 Course.propTypes = {
   course: PropTypes.object.isRequired,
   onDetailsClick: PropTypes.func.isRequired,
+  onSaveClick: PropTypes.func.isRequired,
 };
 
-function Course({course, onDetailsClick}) {
+function Course({course, onDetailsClick, onSaveClick}) {
   function render() {
     return (
       <tr>
@@ -20,6 +21,9 @@ function Course({course, onDetailsClick}) {
         <td className="tools">
           <Button variant="link" onClick={onDetailsClick}>
             <AppIcon icon="info" color={colors.black} />
+          </Button>
+          <Button variant="link" onClick={onSaveClick}>
+            <AppIcon icon="edit" color={colors.black} />
           </Button>
         </td>
       </tr>

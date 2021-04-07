@@ -6,7 +6,7 @@ import COMMON from 'constants/literals/common';
 import COURSE from 'constants/literals/courses';
 
 CourseDetails.propTypes = {
-  currentCourse: PropTypes.object.isRequired,
+  currentCourse: PropTypes.object,
   visible: PropTypes.bool.isRequired,
   close: PropTypes.func.isRequired,
 };

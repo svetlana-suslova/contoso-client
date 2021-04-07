@@ -10,6 +10,14 @@ const studentReducer = (state = initialState.course, action) => {
     [types.LOAD_COURSE](state, payload) {
       state.current = payload.course;
     },
+    [types.UPDATE_COURSE](state, payload) {
+      let newList = [...state.list.filter((course) => course.id !== payload.course.id), {...payload.course}];
+      state.list = newList;
+    },
+    [types.CREATE_COURSE](state, payload) {
+      let newList = [...state.list, {...payload.course}];
+      state.list = newList;
+    },
   });
 };
 

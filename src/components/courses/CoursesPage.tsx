@@ -3,12 +3,15 @@ import {useSelector, useDispatch} from 'react-redux';
 import {AppState} from 'reducers/rootReducer';
 import Course from './Course';
 import CoursesFilter from './CoursesFilter';
-import {loadCourses, loadCourse} from 'actions/courseActions';
+import {loadCourses, loadCourse, saveCourse} from 'actions/courseActions';
 import {loadDepartments} from 'actions/departmentActions';
 import {Container, Button} from '../bootstrap';
 import {Heading} from 'styles/shared';
 import {getDepartmentsOptions} from 'helpers/entityHelper';
 import CourseDetails from './CourseDetails';
+import CourseSave from './CourseSave';
+import uiHelper from 'helpers/uiHelper';
+import COURSE from 'constants/literals/courses';
 
 function CoursesPage() {
   const courses: Array<Course> = useSelector((state: AppState) => state.course.list);
@@ -18,6 +21,7 @@ function CoursesPage() {
 
   const [departmentId, setDepartmentId] = useState('');
   const [detailsModal, toggleDetailsModal] = useState(false);
+  const [courseToEdit, setCourseToEdit] = useState<Course | null>(null);
 
   useEffect(() => {
     dispatch(loadCourses(null));
@@ -37,7 +41,45 @@ function CoursesPage() {
     toggleDetailsModal(!detailsModal);
   }
 
+  function createCourse() {
+    setCourseToEdit({
+      credits: 0,
+      department: {},
+      departmentId: 3,
+      id: 0,
+      number: 0,
+      title: '',
+    });
+  }
+
+  function updateCourse(course) {
+    setCourseToEdit({...course});
+    dispatch(loadCourse(course.id));
+  }
+
+  function updateCourseState(field: string, value) {
+    if (!courseToEdit) return;
+
+    setCourseToEdit({...courseToEdit, [field]: value});
+  }
+
+  async function onSaveCourse() {
+    const completed = await dispatch(saveCourse(courseToEdit));
+    const message = courseToEdit && courseToEdit.id ? COURSE.UPDATED : COURSE.CREATED;
+    if (completed !== undefined) {
+      dispatch(loadCourses(null));
+      dispatch(loadDepartments());
+      uiHelper.showMessage(message);
+    }
+    closeSaveModal();
+  }
+
+  function closeSaveModal() {
+    setCourseToEdit(null);
+  }
+
   function render() {
+    let editMode = courseToEdit ? true : false;
     return (
       <Container>
         <Heading>Courses</Heading>
@@ -55,18 +97,34 @@ function CoursesPage() {
               <th>Credits</th>
               <th>Department</th>
               <th>
-                <Button variant="link">Create New</Button>
+                <Button variant="link" onClick={createCourse}>
+                  Create New
+                </Button>
               </th>
             </tr>
           </thead>
           <tbody>
             {courses.map((course) => (
-              <Course key={course.id} course={course} onDetailsClick={() => showDetailsModal(course.id)} />
+              <Course
+                key={course.id}
+                course={course}
+                onDetailsClick={() => showDetailsModal(course.id)}
+                onSaveClick={() => updateCourse(course)}
+              />
             ))}
           </tbody>
         </table>
-
         <CourseDetails visible={detailsModal} close={closeDetailsModal} currentCourse={currentCourse} />
+        {editMode && (
+          <CourseSave
+            visible={editMode}
+            close={closeSaveModal}
+            course={courseToEdit}
+            saveCourse={onSaveCourse}
+            onChange={updateCourseState}
+            options={getDepartmentsOptions(departments)}
+          />
+        )}
       </Container>
     );
   }

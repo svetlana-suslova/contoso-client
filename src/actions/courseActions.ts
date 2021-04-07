@@ -3,7 +3,12 @@ import helper from './actionHelper';
 import service from 'services/courseService';
 
 const loadCoursesSuccess = (courses: Array<any>) => helper.getAction(types.LOAD_COURSES, {courses});
+
 const loadCourseSuccess = (course) => helper.getAction(types.LOAD_COURSE, {course});
+
+const updateCourseSuccess = (course) => helper.getAction(types.UPDATE_COURSE, {course});
+
+const createCourseSuccess = (course) => helper.getAction(types.CREATE_COURSE, {course});
 
 export const loadCourses = (departmentId) => {
   return helper.dispatchAsyncAction(async (dispatch) => {
@@ -16,5 +21,12 @@ export const loadCourse = (courseId) => {
   return helper.dispatchAsyncAction(async (dispatch) => {
     let course = await service.getCourse(courseId);
     dispatch(loadCourseSuccess(course));
+  }, null);
+};
+
+export const saveCourse = (currentCourse) => {
+  return helper.dispatchAsyncAction(async (dispatch) => {
+    let course = await service.saveCourse(currentCourse);
+    currentCourse.id ? dispatch(updateCourseSuccess(course)) : dispatch(createCourseSuccess(course));
   }, null);
 };
