@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Modal, Button} from 'components/bootstrap';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 
 import COURSE from 'constants/literals/courses';
 import COMMON from 'constants/literals/common';
@@ -36,11 +37,11 @@ function CourseSave({course, options, visible, close, saveCourse, onChange}) {
       errors.title = COMMON.TITLE_REQ;
     }
 
-    if (!course.credits) {
-      errors.credits = COMMON.CREDITS_REQ;
+    if (!_.inRange(course.credits, 1, 6)) {
+      errors.credits = COMMON.CREDITS_RANGE;
     }
 
-    if (!course.department) {
+    if (!course.departmentId) {
       errors.department = COMMON.DEPARTMENT_REQ;
     }
 
@@ -87,14 +88,15 @@ function CourseSave({course, options, visible, close, saveCourse, onChange}) {
                 onChange={onChange}
                 error={errors.credits}
               />
-              <div>Department</div>
               <SelectInput
-                label="Select Department"
+                name="departmentId"
+                label="Department"
                 value={course.departmentId.toString()}
                 options={options}
+                defaultOption="Select Department"
                 onChange={onChange}
+                error={errors.department}
               />
-              {errors.department && <div className="alert alert-danger">{errors.department}</div>}
             </form>
           </Modal.Body>
           <Modal.Footer>

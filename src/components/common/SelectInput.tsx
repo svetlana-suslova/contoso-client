@@ -1,30 +1,36 @@
 import React from 'react';
+import {Form} from 'components/bootstrap';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-
-const Select = styled.select`
-  width: 200px;
-  margin-right: 10px;
-  margin-left: 10px;
-`;
 
 SelectInput.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  options: PropTypes.array.isRequired,
-  value: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  options: PropTypes.array,
+  defaultOption: PropTypes.string,
+  error: PropTypes.string,
 };
 
-function SelectInput({value, onChange, options, label}) {
+function SelectInput({name, label, value, onChange, options, defaultOption, error}) {
+  function inputOnChange(event) {
+    onChange(name, event.target.value);
+  }
+
   return (
-    <Select value={value} onChange={onChange}>
-      <option value="">{label}</option>
-      {options.map((opt) => (
-        <option key={opt.value} value={opt.value}>
-          {opt.text}
-        </option>
-      ))}
-    </Select>
+    <Form.Group>
+      <Form.Label>{label}</Form.Label>
+
+      <Form.Control as="select" name={name} value={value} onChange={inputOnChange}>
+        <option value="">{defaultOption}</option>
+        {options.map((opt) => (
+          <option key={opt.value} value={opt.value}>
+            {opt.text}
+          </option>
+        ))}
+      </Form.Control>
+      {error && <div className="alert alert-danger">{error}</div>}
+    </Form.Group>
   );
 }
+
 export default SelectInput;

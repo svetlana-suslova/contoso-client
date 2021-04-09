@@ -23,6 +23,8 @@ function CoursesPage() {
   const [detailsModal, toggleDetailsModal] = useState(false);
   const [courseToEdit, setCourseToEdit] = useState<Course | null>(null);
 
+  const options = getDepartmentsOptions(departments);
+
   useEffect(() => {
     dispatch(loadCourses(null));
     dispatch(loadDepartments());
@@ -45,7 +47,7 @@ function CoursesPage() {
     setCourseToEdit({
       credits: 0,
       department: {},
-      departmentId: 3,
+      departmentId: 0,
       id: 0,
       number: 0,
       title: '',
@@ -85,7 +87,7 @@ function CoursesPage() {
         <Heading>Courses</Heading>
         <CoursesFilter
           departmentId={departmentId}
-          options={getDepartmentsOptions(departments)}
+          options={options}
           onChange={(e) => setDepartmentId(e.target.value)}
           onClick={filterCourses}
         />
@@ -122,7 +124,7 @@ function CoursesPage() {
             course={courseToEdit}
             saveCourse={onSaveCourse}
             onChange={updateCourseState}
-            options={getDepartmentsOptions(departments)}
+            options={options}
           />
         )}
       </Container>

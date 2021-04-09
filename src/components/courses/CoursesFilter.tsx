@@ -4,12 +4,16 @@ import {Button} from 'components/bootstrap';
 import styled from 'styled-components';
 import COMMON from 'constants/literals/common';
 
-import SelectInput from 'components/common/SelectInput';
-
 const FilterBlock = styled.div`
   margin-top: 20px;
   margin-bottom: 20px;
   display: flex;
+`;
+
+const Select = styled.select`
+  width: 200px;
+  margin-right: 10px;
+  margin-left: 10px;
 `;
 
 CoursesFilter.propTypes = {
@@ -24,7 +28,14 @@ function CoursesFilter({departmentId, options, onChange, onClick}) {
     return (
       <FilterBlock>
         <span>Select Department:</span>
-        <SelectInput label="All" value={departmentId} options={options} onChange={onChange} />
+        <Select value={departmentId} onChange={onChange}>
+          <option value="">All</option>
+          {options.map((opt) => (
+            <option key={opt.value} value={opt.value}>
+              {opt.text}
+            </option>
+          ))}
+        </Select>
         <Button variant="secondary" size="sm" onClick={onClick}>
           {COMMON.FILTER}
         </Button>
