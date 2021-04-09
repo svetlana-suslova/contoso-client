@@ -10,6 +10,8 @@ const updateCourseSuccess = (course) => helper.getAction(types.UPDATE_COURSE, {c
 
 const createCourseSuccess = (course) => helper.getAction(types.CREATE_COURSE, {course});
 
+const deleteCourseSuccess = (id) => helper.getAction(types.DELETE_COURSE, {id});
+
 export const loadCourses = (departmentId) => {
   return helper.dispatchAsyncAction(async (dispatch) => {
     let courses = await service.getCourses(departmentId);
@@ -28,5 +30,14 @@ export const saveCourse = (currentCourse) => {
   return helper.dispatchAsyncAction(async (dispatch) => {
     let course = await service.saveCourse(currentCourse);
     currentCourse.id ? dispatch(updateCourseSuccess(course)) : dispatch(createCourseSuccess(course));
+  }, null);
+};
+
+export const deleteCourse = (id) => {
+  return helper.dispatchAsyncAction(async (dispatch) => {
+    let response = await service.deleteCourse(id);
+    if (response) {
+      dispatch(deleteCourseSuccess(id));
+    }
   }, null);
 };

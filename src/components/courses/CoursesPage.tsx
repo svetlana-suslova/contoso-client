@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {AppState} from 'reducers/rootReducer';
 import Course from './Course';
 import CoursesFilter from './CoursesFilter';
-import {loadCourses, loadCourse, saveCourse} from 'actions/courseActions';
+import {loadCourses, loadCourse, saveCourse, deleteCourse} from 'actions/courseActions';
 import {loadDepartments} from 'actions/departmentActions';
 import {Container, Button} from '../bootstrap';
 import {Heading} from 'styles/shared';
@@ -12,6 +12,7 @@ import CourseDetails from './CourseDetails';
 import CourseSave from './CourseSave';
 import uiHelper from 'helpers/uiHelper';
 import COURSE from 'constants/literals/courses';
+import {confirmAction} from 'actions/commonActions';
 
 function CoursesPage() {
   const courses: Array<Course> = useSelector((state: AppState) => state.course.list);
@@ -80,6 +81,21 @@ function CoursesPage() {
     setCourseToEdit(null);
   }
 
+  function onDeleteCourse(id) {
+    dispatch(
+      confirmAction({
+        title: COURSE.DELETE,
+        action: async () => {
+          let completed = await dispatch(deleteCourse(id));
+          if (completed !== undefined) {
+            dispatch(loadCourses(departmentId));
+            uiHelper.showMessage(COURSE.DELETED);
+          }
+        },
+      })
+    );
+  }
+
   function render() {
     let editMode = courseToEdit ? true : false;
     return (
@@ -112,6 +128,7 @@ function CoursesPage() {
                 course={course}
                 onDetailsClick={() => showDetailsModal(course.id)}
                 onSaveClick={() => updateCourse(course)}
+                onDeleteClick={() => onDeleteCourse(course.id)}
               />
             ))}
           </tbody>

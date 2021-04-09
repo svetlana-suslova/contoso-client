@@ -4,6 +4,7 @@ export default {
   getCourses,
   getCourse,
   saveCourse,
+  deleteCourse,
 };
 
 function getCourses(departmentId) {
@@ -16,4 +17,8 @@ function getCourse(id) {
 
 function saveCourse(course) {
   return httpHelper.post('/api/course/save', {course});
+}
+
+function deleteCourse(id) {
+  return httpHelper.delete(`/api/course/delete/${id}`);
 }

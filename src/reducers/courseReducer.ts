@@ -18,6 +18,10 @@ const studentReducer = (state = initialState.course, action) => {
       let newList = [...state.list, {...payload.course}];
       state.list = newList;
     },
+    [types.DELETE_COURSE](state, payload) {
+      let newList = [...state.list.filter((course) => course.id !== payload.course.id)];
+      state.list = newList;
+    },
   });
 };
 

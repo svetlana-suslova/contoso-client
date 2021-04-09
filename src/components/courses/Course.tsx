@@ -8,9 +8,10 @@ Course.propTypes = {
   course: PropTypes.object.isRequired,
   onDetailsClick: PropTypes.func.isRequired,
   onSaveClick: PropTypes.func.isRequired,
+  onDeleteClick: PropTypes.func.isRequired,
 };
 
-function Course({course, onDetailsClick, onSaveClick}) {
+function Course({course, onDetailsClick, onSaveClick, onDeleteClick}) {
   function render() {
     return (
       <tr>
@@ -24,6 +25,9 @@ function Course({course, onDetailsClick, onSaveClick}) {
           </Button>
           <Button variant="link" onClick={onSaveClick}>
             <AppIcon icon="edit" color={colors.black} />
+          </Button>
+          <Button variant="link" onClick={onDeleteClick}>
+            <AppIcon icon="delete" color={colors.black} />
           </Button>
         </td>
       </tr>
