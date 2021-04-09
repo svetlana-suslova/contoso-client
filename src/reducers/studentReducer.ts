@@ -2,11 +2,7 @@ import * as types from 'action_types/studentsActionTypes';
 import helper from './reducerHelper';
 import initialState from './initialState';
 
-type StudentState = {
-  statisticsList: StatisticsItem[];
-};
-
-const studentReducer = (state: StudentState = initialState.student, action) => {
+const studentReducer = (state = initialState.student, action) => {
   return helper.handleActions(state, action, {
     [types.LOAD_STUDENTS_STATISTICS](state, payload) {
       state.statisticsList = payload.statistics;
