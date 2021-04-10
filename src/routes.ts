@@ -2,6 +2,7 @@ import HomePage from 'components/HomePage';
 import AboutPage from 'components/AboutPage';
 import StudentsPage from 'components/students/StudentsPage';
 import CoursesPage from 'components/courses/CoursesPage';
+import DepartmentsPage from 'components/departments/DepartmentsPage';
 
 export const routes = [
   {
@@ -35,6 +36,14 @@ export const routes = [
     pageProps: {
       pageId: 'courses',
       title: 'Courses',
+    },
+  },
+  {
+    path: '/departments',
+    component: DepartmentsPage,
+    pageProps: {
+      pageId: 'departments',
+      title: 'Departments',
     },
   },
 ];

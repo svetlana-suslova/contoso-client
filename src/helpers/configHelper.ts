@@ -7,5 +7,6 @@ export default {
     date: 'dd/MM/yyyy',
     year: 'yyyy',
     datePicker: 'd/m/Y',
+    currencySymbol: '$',
   },
 };

@@ -5,6 +5,8 @@ const COMMON = {
   CREDITS_RANGE: 'The field Credits must be between 1 and 5!',
   TITLE_REQ: 'Title field is required!',
   DEPARTMENT_REQ: 'Department field is required!',
+  NAME_REQ: 'Name field is required!',
+  ADMINISTRATOR_REQ: 'Administrator field is required!',
   CLOSE: 'Close',
   SAVE: 'Save',
   SEARCH: 'Search',

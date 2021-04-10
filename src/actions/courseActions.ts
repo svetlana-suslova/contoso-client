@@ -2,15 +2,15 @@ import * as types from 'action_types/coursesActionTypes';
 import helper from './actionHelper';
 import service from 'services/courseService';
 
-const loadCoursesSuccess = (courses: Array<any>) => helper.getAction(types.LOAD_COURSES, {courses});
+const loadCoursesSuccess = (courses: Array<Course>) => helper.getAction(types.LOAD_COURSES, {courses});
 
-const loadCourseSuccess = (course) => helper.getAction(types.LOAD_COURSE, {course});
+const loadCourseSuccess = (course: Course) => helper.getAction(types.LOAD_COURSE, {course});
 
-const updateCourseSuccess = (course) => helper.getAction(types.UPDATE_COURSE, {course});
+const updateCourseSuccess = (course: Course) => helper.getAction(types.UPDATE_COURSE, {course});
 
-const createCourseSuccess = (course) => helper.getAction(types.CREATE_COURSE, {course});
+const createCourseSuccess = (course: Course) => helper.getAction(types.CREATE_COURSE, {course});
 
-const deleteCourseSuccess = (id) => helper.getAction(types.DELETE_COURSE, {id});
+const deleteCourseSuccess = (id: number) => helper.getAction(types.DELETE_COURSE, {id});
 
 export const loadCourses = (departmentId) => {
   return helper.dispatchAsyncAction(async (dispatch) => {

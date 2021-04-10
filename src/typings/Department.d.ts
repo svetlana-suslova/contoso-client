@@ -3,6 +3,6 @@ interface Department {
   id: number;
   instructorId: number;
   name: string;
-  startDate: number;
+  startDate: string;
   instructor: {};
 }
