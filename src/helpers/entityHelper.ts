@@ -6,3 +6,12 @@ export function getDepartmentsOptions(departments) {
     };
   });
 }
+
+export function getInstructorsOptions(instructors) {
+  return instructors.map((instructor) => {
+    return {
+      value: instructor.id,
+      text: instructor.lastName + ', ' + instructor.firstName,
+    };
+  });
+}

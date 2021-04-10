@@ -3,8 +3,9 @@ import student from './studentReducer';
 import common from './commonReducer';
 import course from './courseReducer';
 import department from './departmentReducer';
+import instructor from './instructorReducer';
 
-const rootReducer = combineReducers({student, common, course, department});
+const rootReducer = combineReducers({student, common, course, department, instructor});
 
 export type AppState = ReturnType<typeof rootReducer>;
 
