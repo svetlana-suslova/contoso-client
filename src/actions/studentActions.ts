@@ -2,18 +2,18 @@ import * as types from 'action_types/studentsActionTypes';
 import helper from './actionHelper';
 import service from 'services/studentService';
 
-const loadStudentsStatisticsSuccess = (statistics: Array<any>) =>
+const loadStudentsStatisticsSuccess = (statistics: Array<StatisticsItem>) =>
   helper.getAction(types.LOAD_STUDENTS_STATISTICS, {statistics});
 
-const loadStudentsSuccess = (students: Array<any>) => helper.getAction(types.LOAD_STUDENTS, {students});
+const loadStudentsSuccess = (students: Array<Student>) => helper.getAction(types.LOAD_STUDENTS, {students});
 
-const loadStudentSuccess = (student) => helper.getAction(types.LOAD_STUDENT, {student});
+const loadStudentSuccess = (student: Student) => helper.getAction(types.LOAD_STUDENT, {student});
 
-const updateStudentSuccess = (student) => helper.getAction(types.UPDATE_STUDENT, {student});
+const updateStudentSuccess = (student: Student) => helper.getAction(types.UPDATE_STUDENT, {student});
 
-const createStudentSuccess = (student) => helper.getAction(types.CREATE_STUDENT, {student});
+const createStudentSuccess = (student: Student) => helper.getAction(types.CREATE_STUDENT, {student});
 
-const deleteStudentSuccess = (id) => helper.getAction(types.DELETE_STUDENT, {id});
+const deleteStudentSuccess = (id: number) => helper.getAction(types.DELETE_STUDENT, {id});
 
 export const loadStudentsStatistics = () => {
   return helper.dispatchAsyncAction(async (dispatch) => {
