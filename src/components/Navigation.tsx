@@ -37,6 +37,9 @@ function Navigation() {
               <Nav.Link as={Link} href="/courses" to="/courses" active={pathName === '/courses'}>
                 Courses
               </Nav.Link>
+              <Nav.Link as={Link} href="/instructors" to="/instructors" active={pathName === '/instructors'}>
+                Instructors
+              </Nav.Link>
               <Nav.Link as={Link} href="/departments" to="/departments" active={pathName === '/departments'}>
                 Departments
               </Nav.Link>
