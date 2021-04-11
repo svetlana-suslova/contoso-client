@@ -8,13 +8,5 @@ interface Student {
   enrollmentDate: string;
   firstName: string;
   lastName: string;
-  enrollments: Array<Enrollment>;
-}
-
-interface Enrollment {
-  id: number;
-  courseId: number;
-  studentId: number;
-  grade: string;
-  course: {};
+  enrollments: [];
 }

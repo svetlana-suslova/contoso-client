@@ -18,5 +18,9 @@ export default {
   },
   instructor: {
     list: [],
+    current: {},
+  },
+  enrollment: {
+    list: [],
   },
 };
