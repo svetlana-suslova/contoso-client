@@ -3,6 +3,7 @@ import AboutPage from 'components/AboutPage';
 import StudentsPage from 'components/students/StudentsPage';
 import CoursesPage from 'components/courses/CoursesPage';
 import DepartmentsPage from 'components/departments/DepartmentsPage';
+import InstructorsPage from 'components/instructors/InstructorsPage';
 
 export const routes = [
   {
@@ -44,6 +45,14 @@ export const routes = [
     pageProps: {
       pageId: 'departments',
       title: 'Departments',
+    },
+  },
+  {
+    path: '/instructors',
+    component: InstructorsPage,
+    pageProps: {
+      pageId: 'instructors',
+      title: 'Instructors',
     },
   },
 ];

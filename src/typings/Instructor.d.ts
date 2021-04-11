@@ -5,5 +5,7 @@ interface Instructor {
   hireDate: string;
   id: number;
   number: number;
-  officeAssignment: {};
+  officeAssignment: {
+    location: '';
+  };
 }
