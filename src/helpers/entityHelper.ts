@@ -15,3 +15,12 @@ export function getInstructorsOptions(instructors) {
     };
   });
 }
+
+export function getCoursesOptions(courses) {
+  return courses.map((course) => {
+    return {
+      value: course.id,
+      text: course.number + ' ' + course.title,
+    };
+  });
+}

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 SelectInput.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   options: PropTypes.array,
   defaultOption: PropTypes.string,

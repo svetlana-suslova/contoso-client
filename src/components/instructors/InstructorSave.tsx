@@ -1,12 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import {Modal, Button, Form} from 'components/bootstrap';
 import Flatpickr from 'react-flatpickr';
+import _ from 'lodash';
 import PropTypes from 'prop-types';
 import INSTRUCTOR from 'constants/literals/instructors';
 import COMMON from 'constants/literals/common';
 import validationHelper from 'helpers/validationHelper';
 import TextInput from 'components/common/TextInput';
 import config from 'helpers/configHelper';
+import CheckBox from 'components/common/CheckBox';
 
 const dateOptions = {
   dateFormat: config.format.datePicker,
@@ -55,6 +57,14 @@ function InstructorSave({instructor, visible, close, saveInstructor, onChange, o
     onChange('hireDate', new Date(date));
   }
 
+  function isCheckedCourse(courseId) {
+    let checked = _.find(instructor.courses, (course) => {
+      return course.id === courseId;
+    });
+
+    return checked ? true : false;
+  }
+
   function render() {
     const header = instructor.id ? INSTRUCTOR.EDIT : INSTRUCTOR.CREATE;
     return (
@@ -99,6 +109,18 @@ function InstructorSave({instructor, visible, close, saveInstructor, onChange, o
                 onChange={onChange}
                 placeholder="Office Location"
               />
+              <Form.Group>
+                <Form.Label>Courses</Form.Label>
+                {options.map((option) => (
+                  <CheckBox
+                    key={option.value}
+                    name={option.value.toString()}
+                    label={option.text}
+                    value={isCheckedCourse(option.value)}
+                    onChange={onChange}
+                  />
+                ))}
+              </Form.Group>
             </form>
           </Modal.Body>
           <Modal.Footer>
