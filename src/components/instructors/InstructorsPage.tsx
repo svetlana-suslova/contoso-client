@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import _ from 'lodash';
 import {AppState} from 'reducers/rootReducer';
 import Instructor from './Instructor';
 import {loadInstructors, loadInstructor, saveInstructor, deleteInstructor} from 'actions/instructorActions';
+import {loadCourses} from 'actions/courseActions';
 import {Container, Button} from '../bootstrap';
 import {loadEnrollments} from 'actions/enrollmentActions';
 import {Heading} from 'styles/shared';
@@ -12,20 +14,22 @@ import uiHelper from 'helpers/uiHelper';
 import dateHelper from 'helpers/dateHelper';
 import INSTRUCTOR from 'constants/literals/instructors';
 import {confirmAction} from 'actions/commonActions';
-import {getInstructorsOptions} from 'helpers/entityHelper';
+import {getCoursesOptions} from 'helpers/entityHelper';
 
 function InstructorsPage() {
   const instructors: Array<Instructor> = useSelector((state: AppState) => state.instructor.list);
   const currentInstructor: Instructor = useSelector((state: AppState) => state.instructor.current);
+  const courses: Array<Course> = useSelector((state: AppState) => state.course.list);
   const enrollments: Array<Enrollment> = useSelector((state: AppState) => state.enrollment.list);
   const dispatch = useDispatch();
   const [detailsModal, toggleDetailsModal] = useState(false);
   const [instructorToEdit, setInstructorToEdit] = useState<Instructor | null>(null);
 
-  const options = []; //getInstructorsOptions(instructors);
+  const options = getCoursesOptions(courses);
 
   useEffect(() => {
     dispatch(loadInstructors());
+    dispatch(loadCourses(null));
   }, []);
 
   function showDetailsModal(instructorId) {
@@ -56,16 +60,32 @@ function InstructorsPage() {
     dispatch(loadInstructor(instructor.id));
   }
 
-  function updateInstructorState(field: string, value) {
+  function updateInstructorState(field, value) {
     if (!instructorToEdit) return;
 
     if (field === 'location') {
       const instructor = {...instructorToEdit};
       instructor.officeAssignment.location = value;
       setInstructorToEdit({...instructor});
-    }
+    } else if (!_.isNaN(parseInt(field, 10))) {
+      const instructor = {...instructorToEdit};
+      let id = parseInt(field, 10);
 
-    setInstructorToEdit({...instructorToEdit, [field]: value});
+      let exist = _.find(instructor.courses, (item) => {
+        return item.id === id;
+      });
+
+      if (exist) {
+        instructor.courses = _.filter(instructor.courses, (course) => {
+          return course.id !== id;
+        });
+      } else {
+        instructor.courses.push({credits: 0, department: {}, departmentId: 0, id: id, number: 0, title: ''});
+      }
+      setInstructorToEdit({...instructor});
+    } else {
+      setInstructorToEdit({...instructorToEdit, [field]: value});
+    }
   }
 
   async function onSaveInstructor() {

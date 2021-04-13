@@ -1,5 +1,5 @@
 interface Instructor {
-  courses: [];
+  courses: Array<Course>;
   firstName: string;
   lastName: string;
   hireDate: string;
