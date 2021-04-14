@@ -11,6 +11,7 @@ export default {
   },
   course: {
     list: [],
+    current: {},
   },
   department: {
     list: [],

@@ -1,6 +1,8 @@
 interface Course {
   credits: number;
-  department: {};
+  department: {
+    name: string;
+  };
   departmentId: number;
   id: number;
   number: number;

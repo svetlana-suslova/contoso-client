@@ -6,16 +6,16 @@ import COMMON from 'constants/literals/common';
 import COURSE from 'constants/literals/courses';
 
 CourseDetails.propTypes = {
-  currentCourse: PropTypes.object,
+  currentCourse: PropTypes.object.isRequired,
   visible: PropTypes.bool.isRequired,
   close: PropTypes.func.isRequired,
 };
 
 function CourseDetails({currentCourse, visible, close}) {
-  let departmentName = currentCourse ? currentCourse.department.name : '';
-  let courseNumber = currentCourse ? currentCourse.number.toString() : '';
-  let courseTitle = currentCourse ? currentCourse.title : '';
-  let courseCredits = currentCourse ? currentCourse.credits.toString() : '';
+  let departmentName = currentCourse && currentCourse.department ? currentCourse.department.name : null;
+  let courseNumber = currentCourse && currentCourse.number ? currentCourse.number.toString() : null;
+  let courseTitle = currentCourse ? currentCourse.title : null;
+  let courseCredits = currentCourse && currentCourse.credits ? currentCourse.credits.toString() : null;
 
   function render() {
     return (

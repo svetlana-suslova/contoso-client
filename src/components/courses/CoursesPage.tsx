@@ -47,7 +47,9 @@ function CoursesPage() {
   function createCourse() {
     setCourseToEdit({
       credits: 0,
-      department: {},
+      department: {
+        name: '',
+      },
       departmentId: 0,
       id: 0,
       number: 0,
