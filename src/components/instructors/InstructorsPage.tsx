@@ -80,7 +80,16 @@ function InstructorsPage() {
           return course.id !== id;
         });
       } else {
-        instructor.courses.push({credits: 0, department: {}, departmentId: 0, id: id, number: 0, title: ''});
+        instructor.courses.push({
+          credits: 0,
+          department: {
+            name: '',
+          },
+          departmentId: 0,
+          id: id,
+          number: 0,
+          title: '',
+        });
       }
       setInstructorToEdit({...instructor});
     } else {

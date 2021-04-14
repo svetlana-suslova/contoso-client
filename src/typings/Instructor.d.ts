@@ -6,6 +6,6 @@ interface Instructor {
   id: number;
   number: number;
   officeAssignment: {
-    location: '';
+    location: string;
   };
 }
