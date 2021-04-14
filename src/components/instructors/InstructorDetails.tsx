@@ -7,7 +7,7 @@ import INSTRUCTOR from 'constants/literals/instructors';
 import dateHelper from 'helpers/dateHelper';
 
 InstructorDetails.propTypes = {
-  currentInstructor: PropTypes.object,
+  currentInstructor: PropTypes.object.isRequired,
   visible: PropTypes.bool.isRequired,
   close: PropTypes.func.isRequired,
 };

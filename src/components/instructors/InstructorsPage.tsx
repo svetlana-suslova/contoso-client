@@ -65,7 +65,7 @@ function InstructorsPage() {
 
     if (field === 'location') {
       const instructor = {...instructorToEdit};
-      instructor.officeAssignment.location = value;
+      instructor.officeAssignment = {...instructor.officeAssignment, location: value};
       setInstructorToEdit({...instructor});
     } else if (!_.isNaN(parseInt(field, 10))) {
       const instructor = {...instructorToEdit};
@@ -80,16 +80,19 @@ function InstructorsPage() {
           return course.id !== id;
         });
       } else {
-        instructor.courses.push({
-          credits: 0,
-          department: {
-            name: '',
+        instructor.courses = [
+          ...instructor.courses,
+          {
+            credits: 0,
+            department: {
+              name: '',
+            },
+            departmentId: 0,
+            id: id,
+            number: 0,
+            title: '',
           },
-          departmentId: 0,
-          id: id,
-          number: 0,
-          title: '',
-        });
+        ];
       }
       setInstructorToEdit({...instructor});
     } else {
