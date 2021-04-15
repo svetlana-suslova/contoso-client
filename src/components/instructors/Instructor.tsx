@@ -10,15 +10,19 @@ Instructor.propTypes = {
   onDetailsClick: PropTypes.func.isRequired,
   onSaveClick: PropTypes.func.isRequired,
   onDeleteClick: PropTypes.func.isRequired,
+  onPointerClick: PropTypes.func.isRequired,
+  selectedInstructorId: PropTypes.number.isRequired,
 };
 
-function Instructor({instructor, onDetailsClick, onSaveClick, onDeleteClick}) {
+function Instructor({instructor, onDetailsClick, onSaveClick, onDeleteClick, onPointerClick, selectedInstructorId}) {
   const office = instructor.officeAssignment ? instructor.officeAssignment.location : '';
   const date = dateHelper.displayDate(instructor.hireDate);
+  let activeClass =
+    selectedInstructorId === instructor.id ? {backgroundColor: colors.green} : {backgroundColor: colors.white};
 
   function render() {
     return (
-      <tr>
+      <tr style={activeClass}>
         <td>{instructor.lastName}</td>
         <td>{instructor.firstName}</td>
         <td>{date}</td>
@@ -31,7 +35,7 @@ function Instructor({instructor, onDetailsClick, onSaveClick, onDeleteClick}) {
           ))}
         </td>
         <td className="tools">
-          <Button variant="link" onClick={onDetailsClick}>
+          <Button variant="link" onClick={onPointerClick}>
             <AppIcon icon="point" color={colors.black} />
           </Button>
           <Button variant="link" onClick={onDetailsClick}>

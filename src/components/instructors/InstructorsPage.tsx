@@ -15,6 +15,8 @@ import dateHelper from 'helpers/dateHelper';
 import INSTRUCTOR from 'constants/literals/instructors';
 import {confirmAction} from 'actions/commonActions';
 import {getCoursesOptions} from 'helpers/entityHelper';
+import InstructorCoursesList from './InstructorCoursesList';
+import InstructorStudentsList from './InstructorStudentsList';
 
 function InstructorsPage() {
   const instructors: Array<Instructor> = useSelector((state: AppState) => state.instructor.list);
@@ -22,6 +24,11 @@ function InstructorsPage() {
   const courses: Array<Course> = useSelector((state: AppState) => state.course.list);
   const enrollments: Array<Enrollment> = useSelector((state: AppState) => state.enrollment.list);
   const dispatch = useDispatch();
+
+  const [coursesVisible, showInstructorCoursesBlock] = useState(false);
+  const [studentsVisible, showCourseStudentsBlock] = useState(false);
+  const [selectedInstructorId, setSelectedInstructorId] = useState(0);
+  const [selectedCourseId, setSelectedCourseId] = useState(0);
   const [detailsModal, toggleDetailsModal] = useState(false);
   const [instructorToEdit, setInstructorToEdit] = useState<Instructor | null>(null);
 
@@ -31,6 +38,20 @@ function InstructorsPage() {
     dispatch(loadInstructors());
     dispatch(loadCourses(null));
   }, []);
+
+  function showCoursesList(instructorId) {
+    dispatch(loadInstructor(instructorId));
+    showInstructorCoursesBlock(true);
+    showCourseStudentsBlock(false);
+    setSelectedInstructorId(instructorId);
+    setSelectedCourseId(0);
+  }
+
+  function showStudentsList(courseId) {
+    dispatch(loadEnrollments(courseId));
+    showCourseStudentsBlock(true);
+    setSelectedCourseId(courseId);
+  }
 
   function showDetailsModal(instructorId) {
     dispatch(loadInstructor(instructorId));
@@ -154,10 +175,21 @@ function InstructorsPage() {
                 onDetailsClick={() => showDetailsModal(instructor.id)}
                 onSaveClick={() => updateInstructor(instructor)}
                 onDeleteClick={() => onDeleteInstructor(instructor.id)}
+                onPointerClick={() => showCoursesList(instructor.id)}
+                selectedInstructorId={selectedInstructorId}
               />
             ))}
           </tbody>
         </table>
+        <InstructorCoursesList
+          currentInstructor={currentInstructor}
+          visible={coursesVisible}
+          selectedCourseId={selectedCourseId}
+          onPointerClick={showStudentsList}
+        />
+
+        <InstructorStudentsList visible={studentsVisible} enrollments={enrollments} />
+
         <InstructorDetails visible={detailsModal} close={closeDetailsModal} currentInstructor={currentInstructor} />
         {editMode && (
           <InstructorSave
