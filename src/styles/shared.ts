@@ -23,4 +23,5 @@ export const colors = {
   grey: '#ccc',
   grey_light: '#adadad',
   grey_lighter: '#e6e6e6',
+  green: '#dff0d8',
 };
