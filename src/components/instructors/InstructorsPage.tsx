@@ -62,19 +62,16 @@ function InstructorsPage() {
 
   function updateInstructorState(field, value) {
     if (!instructorToEdit) return;
+    const instructor = {...instructorToEdit};
 
     if (field === 'location') {
-      const instructor = {...instructorToEdit};
       instructor.officeAssignment = {...instructor.officeAssignment, location: value};
       setInstructorToEdit({...instructor});
     } else if (!_.isNaN(parseInt(field, 10))) {
-      const instructor = {...instructorToEdit};
       let id = parseInt(field, 10);
-
       let exist = _.find(instructor.courses, (item) => {
         return item.id === id;
       });
-
       if (exist) {
         instructor.courses = _.filter(instructor.courses, (course) => {
           return course.id !== id;
