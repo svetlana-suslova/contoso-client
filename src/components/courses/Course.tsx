@@ -24,10 +24,10 @@ function Course({course, onDetailsClick, onSaveClick, onDeleteClick}) {
             <AppIcon icon="info" color={colors.black} />
           </Button>
           <Button variant="link" onClick={onSaveClick}>
-            <AppIcon icon="edit" color={colors.black} />
+            <AppIcon icon="edit" size="sm" color={colors.black} />
           </Button>
           <Button variant="link" onClick={onDeleteClick}>
-            <AppIcon icon="delete" color={colors.black} />
+            <AppIcon icon="delete" size="sm" color={colors.black} />
           </Button>
         </td>
       </tr>
