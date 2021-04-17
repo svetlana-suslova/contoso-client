@@ -4,6 +4,7 @@ import {Button} from 'components/bootstrap';
 import AppIcon from 'components/common/AppIcon';
 import {colors} from 'styles/shared';
 import dateHelper from 'helpers/dateHelper';
+import classNames from 'classnames';
 
 Instructor.propTypes = {
   instructor: PropTypes.object.isRequired,
@@ -17,12 +18,10 @@ Instructor.propTypes = {
 function Instructor({instructor, onDetailsClick, onSaveClick, onDeleteClick, onPointerClick, selectedInstructorId}) {
   const office = instructor.officeAssignment ? instructor.officeAssignment.location : '';
   const date = dateHelper.displayDate(instructor.hireDate);
-  let activeClass =
-    selectedInstructorId === instructor.id ? {backgroundColor: colors.green} : {backgroundColor: colors.white};
 
   function render() {
     return (
-      <tr style={activeClass}>
+      <tr className={classNames({success: selectedInstructorId === instructor.id})}>
         <td>{instructor.lastName}</td>
         <td>{instructor.firstName}</td>
         <td>{date}</td>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {Button} from 'components/bootstrap';
 import AppIcon from 'components/common/AppIcon';
 import {colors, Heading} from 'styles/shared';
+import classNames from 'classnames';
 
 InstructorCoursesList.propTypes = {
   currentInstructor: PropTypes.object.isRequired,
@@ -30,11 +31,7 @@ function InstructorCoursesList({currentInstructor, visible, selectedCourseId, on
           </thead>
           <tbody>
             {courses.map((course) => (
-              <tr
-                style={
-                  selectedCourseId === course.id ? {backgroundColor: colors.green} : {backgroundColor: colors.white}
-                }
-                key={course.id}>
+              <tr className={classNames({success: selectedCourseId === course.id})} key={course.id}>
                 <td className="tools">
                   <Button variant="link" onClick={() => onPointerClick(course.id)}>
                     <AppIcon icon="point" color={colors.black} />

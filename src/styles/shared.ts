@@ -14,7 +14,6 @@ export const screenCenteredContainer = css`
 export const Heading = styled.h1`
   margin: 20px 0;
   font-size: 2rem;
-}
 `;
 
 export const colors = {
@@ -23,5 +22,4 @@ export const colors = {
   grey: '#ccc',
   grey_light: '#adadad',
   grey_lighter: '#e6e6e6',
-  green: '#dff0d8',
 };
