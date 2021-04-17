@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Modal, Button, Form} from 'components/bootstrap';
 import Flatpickr from 'react-flatpickr';
 import PropTypes from 'prop-types';
-import DEPARTMENT from 'constants/literals/courses';
+import DEPARTMENT from 'constants/literals/departments';
 import COMMON from 'constants/literals/common';
 import validationHelper from 'helpers/validationHelper';
 import TextInput from 'components/common/TextInput';

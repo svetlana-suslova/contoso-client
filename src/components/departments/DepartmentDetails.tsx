@@ -3,7 +3,7 @@ import {Modal, Button, Container} from 'components/bootstrap';
 import PropTypes from 'prop-types';
 import DisplayRow from 'components/common/DisplayRow';
 import COMMON from 'constants/literals/common';
-import DEPARTMENT from 'constants/literals/courses';
+import DEPARTMENT from 'constants/literals/departments';
 import personHelper from 'helpers/personHelper';
 import currencyHelper from 'helpers/currencyHelper';
 import dateHelper from 'helpers/dateHelper';
