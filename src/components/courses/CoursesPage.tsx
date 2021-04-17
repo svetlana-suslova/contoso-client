@@ -7,7 +7,7 @@ import {loadCourses, loadCourse, saveCourse, deleteCourse} from 'actions/courseA
 import {loadDepartments} from 'actions/departmentActions';
 import {Container, Button} from '../bootstrap';
 import {Heading} from 'styles/shared';
-import {getDepartmentsOptions} from 'helpers/entityHelper';
+import _ from 'helpers/entityHelper';
 import CourseDetails from './CourseDetails';
 import CourseSave from './CourseSave';
 import uiHelper from 'helpers/uiHelper';
@@ -24,7 +24,7 @@ function CoursesPage() {
   const [detailsModal, toggleDetailsModal] = useState(false);
   const [courseToEdit, setCourseToEdit] = useState<Course | null>(null);
 
-  const options = getDepartmentsOptions(departments);
+  const options = _.getDepartmentsOptions(departments);
 
   useEffect(() => {
     dispatch(loadCourses(null));

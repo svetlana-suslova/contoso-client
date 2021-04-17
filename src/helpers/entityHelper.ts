@@ -1,4 +1,10 @@
-export function getDepartmentsOptions(departments) {
+export default {
+  getDepartmentsOptions,
+  getInstructorsOptions,
+  getCoursesOptions,
+};
+
+function getDepartmentsOptions(departments) {
   return departments.map((department) => {
     return {
       value: department.id,
@@ -7,7 +13,7 @@ export function getDepartmentsOptions(departments) {
   });
 }
 
-export function getInstructorsOptions(instructors) {
+function getInstructorsOptions(instructors) {
   return instructors.map((instructor) => {
     return {
       value: instructor.id,
@@ -16,7 +22,7 @@ export function getInstructorsOptions(instructors) {
   });
 }
 
-export function getCoursesOptions(courses) {
+function getCoursesOptions(courses) {
   return courses.map((course) => {
     return {
       value: course.id,

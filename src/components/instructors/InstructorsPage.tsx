@@ -14,7 +14,7 @@ import uiHelper from 'helpers/uiHelper';
 import dateHelper from 'helpers/dateHelper';
 import INSTRUCTOR from 'constants/literals/instructors';
 import {confirmAction} from 'actions/commonActions';
-import {getCoursesOptions} from 'helpers/entityHelper';
+import __ from 'helpers/entityHelper';
 import InstructorCoursesList from './InstructorCoursesList';
 import InstructorStudentsList from './InstructorStudentsList';
 
@@ -31,8 +31,6 @@ function InstructorsPage() {
   const [selectedCourseId, setSelectedCourseId] = useState(0);
   const [detailsModal, toggleDetailsModal] = useState(false);
   const [instructorToEdit, setInstructorToEdit] = useState<Instructor | null>(null);
-
-  const options = getCoursesOptions(courses);
 
   useEffect(() => {
     dispatch(loadInstructors());
@@ -198,7 +196,7 @@ function InstructorsPage() {
             instructor={instructorToEdit}
             saveInstructor={onSaveInstructor}
             onChange={updateInstructorState}
-            options={options}
+            options={__.getCoursesOptions(courses)}
           />
         )}
       </Container>

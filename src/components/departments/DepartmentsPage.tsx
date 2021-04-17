@@ -12,7 +12,7 @@ import uiHelper from 'helpers/uiHelper';
 import dateHelper from 'helpers/dateHelper';
 import DEPARTMENT from 'constants/literals/departments';
 import {confirmAction} from 'actions/commonActions';
-import {getInstructorsOptions} from 'helpers/entityHelper';
+import _ from 'helpers/entityHelper';
 
 function DepartmentsPage() {
   const departments: Array<Department> = useSelector((state: AppState) => state.department.list);
@@ -22,8 +22,6 @@ function DepartmentsPage() {
 
   const [detailsModal, toggleDetailsModal] = useState(false);
   const [departmentToEdit, setDepartmentToEdit] = useState<Department | null>(null);
-
-  const options = getInstructorsOptions(instructors);
 
   useEffect(() => {
     dispatch(loadDepartments());
@@ -129,7 +127,7 @@ function DepartmentsPage() {
             department={departmentToEdit}
             saveDepartment={onSaveDepartment}
             onChange={updateDepartmentState}
-            options={options}
+            options={_.getInstructorsOptions(instructors)}
           />
         )}
       </Container>
