@@ -13,10 +13,8 @@ InstructorDetails.propTypes = {
 };
 
 function InstructorDetails({currentInstructor, visible, close}) {
-  const office =
-    currentInstructor && currentInstructor.officeAssignment ? currentInstructor.officeAssignment.location : 'No office';
-  const date =
-    currentInstructor && currentInstructor.hireDate ? dateHelper.displayDate(currentInstructor.hireDate) : null;
+  const office = currentInstructor?.officeAssignment?.location || 'No office';
+  const date = currentInstructor?.hireDate ? dateHelper.displayDate(currentInstructor.hireDate) : null;
 
   function render() {
     return (

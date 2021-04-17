@@ -28,7 +28,7 @@ function InstructorSave({instructor, visible, close, saveInstructor, onChange, o
     setErrors({firstName: '', lastName: ''});
   }, [instructor]);
 
-  const office = instructor.officeAssignment ? instructor.officeAssignment.location : '';
+  const office = instructor.officeAssignment?.location || '';
   const [errors, setErrors] = useState({firstName: '', lastName: ''});
 
   function formIsValid() {

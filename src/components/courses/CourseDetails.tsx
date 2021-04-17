@@ -12,10 +12,10 @@ CourseDetails.propTypes = {
 };
 
 function CourseDetails({currentCourse, visible, close}) {
-  let departmentName = currentCourse && currentCourse.department ? currentCourse.department.name : null;
-  let courseNumber = currentCourse && currentCourse.number ? currentCourse.number.toString() : null;
-  let courseTitle = currentCourse ? currentCourse.title : null;
-  let courseCredits = currentCourse && currentCourse.credits ? currentCourse.credits.toString() : null;
+  let departmentName = currentCourse?.department?.name;
+  let courseNumber = currentCourse?.number?.toString();
+  let courseTitle = currentCourse?.title;
+  let courseCredits = currentCourse?.credits?.toString();
 
   function render() {
     return (

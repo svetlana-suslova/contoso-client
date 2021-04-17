@@ -14,7 +14,7 @@ InstructorCoursesList.propTypes = {
 
 function InstructorCoursesList({currentInstructor, visible, selectedCourseId, onPointerClick}) {
   const style = visible ? {display: 'block'} : {display: 'none'};
-  const courses = currentInstructor && currentInstructor.courses ? currentInstructor.courses : [];
+  const courses = currentInstructor?.courses || [];
 
   function render() {
     return (

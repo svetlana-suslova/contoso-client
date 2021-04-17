@@ -16,7 +16,7 @@ Instructor.propTypes = {
 };
 
 function Instructor({instructor, onDetailsClick, onSaveClick, onDeleteClick, onPointerClick, selectedInstructorId}) {
-  const office = instructor.officeAssignment ? instructor.officeAssignment.location : '';
+  const office = instructor.officeAssignment?.location;
   const date = dateHelper.displayDate(instructor.hireDate);
 
   function render() {
